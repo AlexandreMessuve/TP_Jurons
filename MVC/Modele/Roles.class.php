@@ -6,9 +6,9 @@ class Roles {
     private string $type;
 
 // On crée la méthode construct qui initialise les attributs de l'objet
-    public function __construct (int $idRole, string $type) {
-        $this-> idRole = $idRole;
-        $this-> type = $type;
+    public function __construct (object $listRole) {
+        $this-> idRole = $listRole->id_role;
+        $this-> type = $listRole->type;
     }
 
     /**

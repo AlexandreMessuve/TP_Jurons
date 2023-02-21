@@ -10,10 +10,10 @@ class Balance {
     private string $date;
 
 // On crée la méthode construct qui initialise les attributs de l'objet
-    public function __construct (int $idJurons, int $loginUtilisateur, string $date) {
+    public function __construct (int $idJurons, int $loginUtilisateur) {
         $this->idJurons = $idJurons;
         $this->loginUtilisateur = $loginUtilisateur;
-        $this->date = $date;
+        $this->date = date ("Y-m-d H:i:s");
     }
 
 

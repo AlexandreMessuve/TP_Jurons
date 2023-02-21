@@ -7,10 +7,10 @@ class PeutEtre {
     private string $date;
 
 // On crée la méthode construct qui initialise les attributs de l'objet
-    public function __construct(int $idRetard, int $loginUtilisateur, string $date) {
+    public function __construct(int $idRetard, int $loginUtilisateur) {
         $this-> idRetard = $idRetard;
         $this->loginUtilisateur = $loginUtilisateur;
-        $this->date = $date;
+        $this->date = date('Y-m-d H:i:s');
     }
 
 
