@@ -8,13 +8,13 @@ abstract class Personne {
     protected string $date; 
 
 // On crée la méthode construct qui initialise les attributs de l'objet
-    public function __construct($nom, $prenom, $date) {
+    public function __construct(string $nom,string $prenom,string $date) {
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->date = $date;
     }
 
-    
+
 
     /**
      * Get the value of nom
