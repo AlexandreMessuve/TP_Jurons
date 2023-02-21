@@ -13,10 +13,11 @@ class Utilisateur extends Personne {
 
 // On crée la méthode construct qui initialise les attributs de l'objet, en rappelant les attributs de la classe parent Personne
 
-    public function __construct (string $nom,string $prenom,string $date,string $login,string $password) {
+    public function __construct (string $nom,string $prenom,string $date,string $login,string $password, Roles $roles) {
         parent::__construct($nom, $prenom, $date);
         $this-> login = $login; 
         $this-> password = $password;
+        $this->roles = $roles;
     }
 
 
