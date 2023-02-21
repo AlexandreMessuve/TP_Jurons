@@ -33,16 +33,22 @@ class  DBManager
     //Method static qui permet de mettre a jour l'utilisateur
     static function updateUtilisateur(Utilisateur $utilisateur): bool
     {
+        $nom = $utilisateur->getNom();
+        $prenom = $utilisateur->getPrenom();
+        $date = $utilisateur->getDate();
+        $login = $utilisateur->getLogin();
+        $password = $utilisateur->getPassword();
+        $id_role = $utilisateur->getRoles()->getIdRole();
         $pdo = self::PDO();
         $sql = "UPDATE `utilisateur` SET `nom` =?, `prenom` =?, `date_de_naissance` =?,
                          `login` =?, `password` =?, `id_role` =? WHERE login =?";
         $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(1, $utilisateur->getNom());
-        $stmt->bindParam(2, $utilisateur->getPrenom());
-        $stmt->bindParam(3, $utilisateur->getDate());
-        $stmt->bindParam(4, $utilisateur->getLogin());
-        $stmt->bindParam(5, $utilisateur->getPassword());
-        $stmt->bindParam(6, $utilisateur->getRoles()->getIdRole());
+        $stmt->bindParam(1, $nom);
+        $stmt->bindParam(2, $prenom);
+        $stmt->bindParam(3, $date);
+        $stmt->bindParam(4, $login);
+        $stmt->bindParam(5, $password);
+        $stmt->bindParam(6, $id_role);
         return  $stmt->execute();
     }
 
