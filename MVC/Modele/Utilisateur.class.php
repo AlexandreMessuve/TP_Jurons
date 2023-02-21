@@ -21,14 +21,6 @@ class Utilisateur extends Personne {
     }
 
 
-// On crée la méthode ajoutRole     
-    public function ajoutRole() : void {
-
-    }
-
-
-
-
     /**
      * Get the value of login
      */ 
@@ -65,6 +57,26 @@ class Utilisateur extends Personne {
     public function setPassword($password)
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of roles
+     */ 
+    public function getRoles()
+    {
+        return $this->roles;
+    }
+
+    /**
+     * Set the value of roles
+     *
+     * @return  self
+     */ 
+    public function setRoles($roles)
+    {
+        $this->roles = $roles;
 
         return $this;
     }
