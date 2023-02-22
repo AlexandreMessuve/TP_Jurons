@@ -1,4 +1,16 @@
 body{
     background-image: url(../assets/backround_marron.png);
     background-size: cover;
+    height: 100% ;
 }
+.parent{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 6%;
+    margin-left: 15%;
+}
+.div2{
+    margin-top: 5%;
+    
+}
+
