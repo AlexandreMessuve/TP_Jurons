@@ -8,14 +8,23 @@ include_once "../Modele/Roles.class.php";
 class Utilisateur extends Personne {
 
     private string $login;
+    private string $email;
     private string $password;
     private Roles $roles;
 
 // On crée la méthode construct qui initialise les attributs de l'objet, en rappelant les attributs de la classe parent Personne
 
-    public function __construct (string $nom,string $prenom,string $date,string $login,string $password, Roles $roles) {
+    public function __construct (array $data, Roles $roles) {
+        $nom = $data['nom'];
+        $prenom = $data['prenom'];
+        $date = $data['date'];
+        $login = $data['login'];
+        $password = $data['password'];
+        $email = $data['email'];
+
         parent::__construct($nom, $prenom, $date);
-        $this-> login = $login; 
+        $this-> login = $login;
+        $this->email = $email;
         $this-> password = $password;
         $this->roles = $roles;
     }
