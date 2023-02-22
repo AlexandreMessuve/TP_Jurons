@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mar. 21 fév. 2023 à 10:05
+-- Généré le : mer. 22 fév. 2023 à 09:58
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 7.4.33
 
@@ -24,84 +24,38 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `balance`
+-- Structure de la table `commettre`
 --
 
-CREATE TABLE `balance` (
-  `id_jurons` int(11) NOT NULL,
-  `login` varchar(50) NOT NULL,
-  `Date` date NOT NULL
+CREATE TABLE `commettre` (
+  `code_infraction` varchar(50) NOT NULL,
+  `login_utilisateur` varchar(50) NOT NULL,
+  `login_balance` varchar(50) NOT NULL,
+  `date_infraction` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `jurons`
+-- Structure de la table `infraction`
 --
 
-CREATE TABLE `jurons` (
-  `id_jurons` int(11) NOT NULL,
-  `categorie` varchar(50) NOT NULL,
-  `prix` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `jurons`
---
-
-INSERT INTO `jurons` (`id_jurons`, `categorie`, `prix`) VALUES
-(1, 'petite', 0.1),
-(2, 'grande', 0.3),
-(3, 'roter', 0.5),
-(4, 'geste', 0.7);
-
--- --------------------------------------------------------
-
---
--- Structure de la table `peut_etre`
---
-
-CREATE TABLE `peut_etre` (
-  `id_retard` int(11) NOT NULL,
-  `login` varchar(50) NOT NULL,
-  `Date` date NOT NULL
+CREATE TABLE `infraction` (
+  `code_infraction` varchar(50) NOT NULL,
+  `categorie_infraction` varchar(50) NOT NULL,
+  `tarif_infraction` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `retard`
+-- Structure de la table `roles`
 --
 
-CREATE TABLE `retard` (
-  `id_retard` int(11) NOT NULL,
-  `prix` float NOT NULL
+CREATE TABLE `roles` (
+  `id_roles` int(11) NOT NULL,
+  `type_roles` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `retard`
---
-
-INSERT INTO `retard` (`id_retard`, `prix`) VALUES
-(1, 0.1);
-
--- --------------------------------------------------------
-
---
--- Structure de la table `role`
---
-
-CREATE TABLE `role` (
-  `id_role` int(11) NOT NULL,
-  `type` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `role`
---
-INSERT INTO `role` (`id_role`, `type`) VALUES
-(1, 'Admin'),
-(2, 'Normal');
 
 -- --------------------------------------------------------
 
@@ -110,12 +64,12 @@ INSERT INTO `role` (`id_role`, `type`) VALUES
 --
 
 CREATE TABLE `utilisateur` (
-  `login` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `login_utilisateur` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `nom` varchar(50) NOT NULL,
   `prenom` varchar(50) NOT NULL,
-  `date_de_Naissance` varchar(50) NOT NULL,
-  `id_role` int(11) NOT NULL
+  `date_naissance` date NOT NULL,
+  `id_roles` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -123,89 +77,57 @@ CREATE TABLE `utilisateur` (
 --
 
 --
--- Index pour la table `balance`
+-- Index pour la table `commettre`
 --
-ALTER TABLE `balance`
-  ADD PRIMARY KEY (`id_jurons`,`login`),
-  ADD KEY `Balance_utilisateur0_FK` (`login`);
+ALTER TABLE `commettre`
+  ADD PRIMARY KEY (`code_infraction`,`login_utilisateur`),
+  ADD KEY `commettre_utilisateur0_FK` (`login_utilisateur`);
 
 --
--- Index pour la table `jurons`
+-- Index pour la table `infraction`
 --
-ALTER TABLE `jurons`
-  ADD PRIMARY KEY (`id_jurons`);
+ALTER TABLE `infraction`
+  ADD PRIMARY KEY (`code_infraction`);
 
 --
--- Index pour la table `peut_etre`
+-- Index pour la table `roles`
 --
-ALTER TABLE `peut_etre`
-  ADD PRIMARY KEY (`id_retard`,`login`),
-  ADD KEY `Peut_etre_utilisateur0_FK` (`login`);
-
---
--- Index pour la table `retard`
---
-ALTER TABLE `retard`
-  ADD PRIMARY KEY (`id_retard`);
-
---
--- Index pour la table `role`
---
-ALTER TABLE `role`
-  ADD PRIMARY KEY (`id_role`);
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id_roles`);
 
 --
 -- Index pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  ADD PRIMARY KEY (`login`),
-  ADD KEY `utilisateur_role_FK` (`id_role`);
+  ADD PRIMARY KEY (`login_utilisateur`),
+  ADD KEY `utilisateur_Roles_FK` (`id_roles`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT pour la table `jurons`
+-- AUTO_INCREMENT pour la table `roles`
 --
-ALTER TABLE `jurons`
-  MODIFY `id_jurons` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT pour la table `retard`
---
-ALTER TABLE `retard`
-  MODIFY `id_retard` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT pour la table `role`
---
-ALTER TABLE `role`
-  MODIFY `id_role` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `roles`
+  MODIFY `id_roles` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Contraintes pour les tables déchargées
 --
 
 --
--- Contraintes pour la table `balance`
+-- Contraintes pour la table `commettre`
 --
-ALTER TABLE `balance`
-  ADD CONSTRAINT `Balance_Jurons_FK` FOREIGN KEY (`id_jurons`) REFERENCES `jurons` (`id_jurons`),
-  ADD CONSTRAINT `Balance_utilisateur0_FK` FOREIGN KEY (`login`) REFERENCES `utilisateur` (`login`);
-
---
--- Contraintes pour la table `peut_etre`
---
-ALTER TABLE `peut_etre`
-  ADD CONSTRAINT `Peut_etre_Retard_FK` FOREIGN KEY (`id_retard`) REFERENCES `retard` (`id_retard`),
-  ADD CONSTRAINT `Peut_etre_utilisateur0_FK` FOREIGN KEY (`login`) REFERENCES `utilisateur` (`login`);
+ALTER TABLE `commettre`
+  ADD CONSTRAINT `commettre_infraction_FK` FOREIGN KEY (`code_infraction`) REFERENCES `infraction` (`code_infraction`),
+  ADD CONSTRAINT `commettre_utilisateur0_FK` FOREIGN KEY (`login_utilisateur`) REFERENCES `utilisateur` (`login_utilisateur`);
 
 --
 -- Contraintes pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  ADD CONSTRAINT `utilisateur_role_FK` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`);
+  ADD CONSTRAINT `utilisateur_Roles_FK` FOREIGN KEY (`id_roles`) REFERENCES `roles` (`id_roles`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
