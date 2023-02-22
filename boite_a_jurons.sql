@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 22 fév. 2023 à 09:58
+-- Généré le : mer. 22 fév. 2023 à 13:24
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 7.4.33
 
@@ -46,6 +46,17 @@ CREATE TABLE `infraction` (
   `tarif_infraction` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Déchargement des données de la table `infraction`
+--
+
+INSERT INTO `infraction` (`code_infraction`, `categorie_infraction`, `tarif_infraction`) VALUES
+('code_1', 'retard', 0.1),
+('code_2', 'petite_insulte', 0.1),
+('code_3', 'grosse_insulte', 0.3),
+('code_4', 'rot', 0.5),
+('code_5', 'geste', 0.7);
+
 -- --------------------------------------------------------
 
 --
@@ -57,6 +68,14 @@ CREATE TABLE `roles` (
   `type_roles` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Déchargement des données de la table `roles`
+--
+
+INSERT INTO `roles` (`id_roles`, `type_roles`) VALUES
+(1, 'admin'),
+(2, 'normal');
+
 -- --------------------------------------------------------
 
 --
@@ -65,7 +84,8 @@ CREATE TABLE `roles` (
 
 CREATE TABLE `utilisateur` (
   `login_utilisateur` varchar(50) NOT NULL,
-  `password` varchar(255) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
   `nom` varchar(50) NOT NULL,
   `prenom` varchar(50) NOT NULL,
   `date_naissance` date NOT NULL,
@@ -110,7 +130,7 @@ ALTER TABLE `utilisateur`
 -- AUTO_INCREMENT pour la table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id_roles` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_roles` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Contraintes pour les tables déchargées

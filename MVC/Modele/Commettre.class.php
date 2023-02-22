@@ -9,14 +9,11 @@ class Commettre {
 
     private string $loginBalance;
 
-    private string $dateInfraction;
-
 // On crée la méthode construct qui initialise les attributs de l'objet
     public function __construct (string $codeInfraction, string $loginUtilisateur, string $loginBalance) {
         $this->codeInfraction = $codeInfraction;
         $this->loginUtilisateur = $loginUtilisateur;
         $this->loginBalance = $loginBalance;
-        $this->dateInfraction = date('Y-m-d H:i:s');
     }
 
 
@@ -82,23 +79,4 @@ class Commettre {
         return $this;
     }
 
-    /**
-     * Get the value of dateInfraction
-     */ 
-    public function getDateInfraction()
-    {
-        return $this->dateInfraction;
-    }
-
-    /**
-     * Set the value of dateInfraction
-     *
-     * @return  self
-     */ 
-    public function setDateInfraction($dateInfraction)
-    {
-        $this->dateInfraction = $dateInfraction;
-
-        return $this;
-    }
 }
