@@ -29,13 +29,13 @@ class DBRolesManager {
 
 
     //Method static qui permet d' uptdate un role dans la bdd
-    static function updateRoles(string $type, int $id_roles): bool
+    static function updateRoles(string $newType, string $oldType): bool
     {
         $pdo = self::PDO();
-        $sql = "UPDATE roles SET type = ? WHERE id_roles = ?";
+        $sql = "UPDATE roles SET type = ? WHERE type= ?";
         $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(1, $type);
-        $stmt->bindParam(2, $id_roles);
+        $stmt->bindParam(1, $newtype);
+        $stmt->bindParam(2, $oldType);
         return $stmt->execute();
     }
 

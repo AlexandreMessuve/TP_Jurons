@@ -41,14 +41,14 @@ class  DButilisateurManager
         $id_role = $utilisateur->getRoles()->getIdRole();
         $pdo = self::PDO();
         $sql = "UPDATE `utilisateur` SET `nom` =?, `prenom` =?, `date_de_naissance` =?,
-                         `login` =?, `password` =?, `id_role` =? WHERE login =?";
+                         `password` =?, `id_role` =? WHERE login =?";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(1, $nom);
         $stmt->bindParam(2, $prenom);
         $stmt->bindParam(3, $date);
-        $stmt->bindParam(4, $login);
-        $stmt->bindParam(5, $password);
-        $stmt->bindParam(6, $id_role);
+        $stmt->bindParam(4, $password);
+        $stmt->bindParam(5, $id_role);
+        $stmt->bindParam(6, $login);
         return  $stmt->execute();
     }
 
