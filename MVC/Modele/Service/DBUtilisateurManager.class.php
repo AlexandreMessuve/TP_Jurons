@@ -1,6 +1,6 @@
 <?php
 //Creation de dbmanager
-class  DBManager
+class  DButilisateurManager
 {
     //Method static qui permet de créer une instance de DBManager
     static function PDO(): PDO
@@ -52,6 +52,7 @@ class  DBManager
         return  $stmt->execute();
     }
 
+
     //Method static qui permet de select l'utilisateur a partir de la bdd
     static function selectUtilisateur(): array
     {
@@ -71,25 +72,13 @@ class  DBManager
     }
 
     //Method static qui permet de selectionné les jurons
-    static function selectJurons($categorie): object{
+    static function selectInfractions($categorie): object{
         $pdo = self::PDO();
         $sql = "SELECT * FROM `jurons` where categorie =".$categorie;
         $stmt = $pdo->query($sql);
         return $stmt->fetch(PDO::FETCH_OBJ);
     }
 
-    //metho d'insertion des balances
-    static function insertBalance(Balance $balance): bool{
-        $id_jurons = $balance->getIdJurons();
-        $login = $balance->getLoginUtilisateur();
-        $date = $balance->getDate();
-        $pdo = self::PDO();
-        $sql = "INSERT INTO `balance` (`id_jurons`, `login`, `date`) VALUES (?,?,?)";
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(1, $id_jurons);
-        $stmt->bindParam(2, $login);
-        $stmt->bindParam(3, $date);
-        return $stmt->execute();
-    }
+
 }
 
