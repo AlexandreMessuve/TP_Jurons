@@ -52,6 +52,17 @@ class  DButilisateurManager
         return  $stmt->execute();
     }
 
+    static function deleteUtilisateur(Utilisateur $utilisateur): bool
+    {
+
+        $login = $utilisateur->getLogin();
+        $pdo = self::PDO();
+        $sql = "DELETE FROM `utilisateur` WHERE login =?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(1, $login);
+        return  $stmt->execute();
+    }
+   
 
     //Method static qui permet de select l'utilisateur a partir de la bdd
     static function selectUtilisateur(): array
@@ -62,22 +73,18 @@ class  DButilisateurManager
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
-    //Method static qui permet de selectionné un role dans la bdd
-    static function selectRole(): array{
+     //Method static qui permet de select l'utilisateur a partir de la bdd
+    static function selectUtilisateurByLogin(string $login): object
+    {
         $pdo = self::PDO();
-        $sql = "SELECT * FROM `role`";
-        $stmt = $pdo->query($sql);
-        return $stmt->fetchAll(PDO::FETCH_OBJ);
-
-    }
-
-    //Method static qui permet de selectionné les jurons
-    static function selectInfractions($categorie): object{
-        $pdo = self::PDO();
-        $sql = "SELECT * FROM `jurons` where categorie =".$categorie;
+        $sql = "SELECT * FROM utilisateur where login=".$login;
         $stmt = $pdo->query($sql);
         return $stmt->fetch(PDO::FETCH_OBJ);
-    }
+        }
+
+
+
+
 
 
 }
