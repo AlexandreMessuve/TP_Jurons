@@ -11,5 +11,15 @@
 
 <body>
 
+
+<?php session_start() ?>
+
+<div class="boutons">
+    <form enctype="multipart/form-data" action="../Controller/executeBalance.php" method="post">
+    <button id="bouton2" style="width: 30em;" type="submit">Voir le tableau des balances</button>
+    </form>
+    </div>
+
+    
 </body>
 </head>

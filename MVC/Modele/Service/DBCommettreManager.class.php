@@ -28,13 +28,13 @@ class DBCommettreManager {
     
             $codeInfraction = $commettre->getCodeInfraction();
             $pdo = self::PDO();
-            $sql = "DELETE FROM `utilisateur` WHERE code_infraction =$codeInfraction";
+            $sql = "DELETE FROM `utilisateur` WHERE code_infraction = $codeInfraction";
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(1, $login);
             return  $stmt->execute();
         }
 
-        static function selectPenalite(): array
+        static function selectAllPenalitys(): array
         {
             $pdo = self::PDO();
             $sql = "SELECT * FROM commettre";
@@ -42,6 +42,20 @@ class DBCommettreManager {
             return $stmt->fetchAll(PDO::FETCH_OBJ);
         }
 
-       
+        static function selectBalance(): array
+        {
+            $pdo = self::PDO();
+            $sql = "SELECT login_balance, login_utilisateur FROM commettre";
+            $stmt = $pdo->query($sql);
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        }
 
+        
+        static function selectBestBalance(): array 
+        {
+            $pdo = self::PDO();
+            $sql = "SELECT COUNT(*), login_balance FROM commettre GROUP BY login_balance";
+            $stmt = $pdo->query($sql);
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        }
 }
