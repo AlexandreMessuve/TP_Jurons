@@ -9,25 +9,14 @@ class DBLogin
         return new PDO('mysql:host=localhost;dbname=boite_a_jurons', 'root', '');
     }
 
-    static function authentification(array $data) : bool  {
-        $statut = false; 
+    static function authentification(string $login, string $password) {
         $connect = self::PDO ();
-        if (isset($data["login"])) {
-            if (empty($data["login"]) || empty($data["password"])) {
-                $statut = false;
-            } else {
-                $query = "SELECT * FROM utilisateur WHERE login_utilisateur = :login AND password = :password";
-                $statement = $connect->prepare($query);
-                $statut = $statement->execute(
-                    array(
-                        'login' => $data["login"],
-                        'password' => $data["password"]
-                    )
-                    
-                    );
-            }
-        }
-        return $statut;
+        $query = "SELECT * FROM `utilisateur` WHERE login_utilisateur='$login'";
+        $stmt = $connect->prepare($query);
+        $stmt->execute();
+        $users = $stmt->fetch(PDO::FETCH_OBJ);
+        return $users->login_utilisateur === $login && $users->password === $password;
+
     }
 
 

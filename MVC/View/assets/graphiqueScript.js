@@ -1,5 +1,5 @@
 
-var datalist= new Array(50, 10, 20, 10 ); 
+var datalist= new Array(40, 80, 70, 20 ); 
 var colist = new Array('blue', 'red', 'green', 'orange');
 var canvas = document.getElementById("myCanvas"); 
 var ctx = canvas.getContext('2d');
@@ -7,7 +7,7 @@ pie(ctx, canvas.width, canvas.height, datalist);
 
 function pie(ctx, w, h, datalist)
 {
-  var radius = h / 2 - 5;
+  var radius = h / 2 - 2;
   var centerx = w / 3;
   var centery = h / 2;
   var total = 0;
