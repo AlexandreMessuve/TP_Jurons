@@ -1,5 +1,4 @@
 <?php
-
 include_once "../Modele/Personne.class.php";
 include_once "../Modele/Roles.class.php";
 
@@ -19,7 +18,8 @@ class Utilisateur extends Personne {
         $prenom = $data['prenom'];
         $date = $data['date'];
         $login = $data['login'];
-        $password = $data['password'];
+        $password = password_hash($data['password'], PASSWORD_DEFAULT);
+
         $email = $data['email'];
 
         parent::__construct($nom, $prenom, $date);

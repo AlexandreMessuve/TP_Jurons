@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inscription</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+<br />
+<div class="container" style="width:500px;">
+
+    <h3> Inscription </h3> <br />
+    <form id="connexion" method="post">
+        <label>Login</label>
+        <input type="text" name="login" class="form-control" required />
+        <br />
+        <label>Mot de passe</label>
+        <input type="password" name="password" class="form-control" required />
+        <br />
+        <label>Repeter Mot de passe</label>
+        <input type="password" name="password" class="form-control" required />
+        <br />
+        <label>Email</label>
+        <input type="email" name="email" class="form-control" required />
+        <br />
+        <label>Nom</label>
+        <input type="text" name="nom" class="form-control" required />
+        <br />
+        <label>Prenom</label>
+        <input type="text" name="prenom" class="form-control" required />
+        <br />
+        <label>Date de naissance</label>
+        <input type="date" name="date" class="form-control" required />
+        <br />
+        <input type="submit" class="btn btn-info" onsubmit="createUtilisateur('../Controller/executeInscription.php')" value="Inscription" />
+    </form>
+</div>
+
+<script type="text/javascript" src="./assets/ajax.js"></script>
+<script
+        src="https://code.jquery.com/jquery-3.6.3.min.js"
+        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+        crossorigin="anonymous"></script>
+</body>
+</html>
