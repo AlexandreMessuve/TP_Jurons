@@ -10,7 +10,7 @@
 <div class="container" style="width:500px;">
 
     <h3> Inscription </h3> <br />
-    <form id="connexion" method="post">
+    <form id="connexion" method="post" action="../Controller/executeInscription.php">
         <label>Login</label>
         <input type="text" name="login" class="form-control" required />
         <br />
@@ -32,11 +32,10 @@
         <label>Date de naissance</label>
         <input type="date" name="date" class="form-control" required />
         <br />
-        <input type="submit" class="btn btn-info" onsubmit="createUtilisateur('../Controller/executeInscription.php')" value="Inscription" />
+        <input type="submit" class="btn btn-info"  value="Inscription" />
     </form>
 </div>
 
-<script type="text/javascript" src="./assets/ajax.js"></script>
 <script
         src="https://code.jquery.com/jquery-3.6.3.min.js"
         integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="

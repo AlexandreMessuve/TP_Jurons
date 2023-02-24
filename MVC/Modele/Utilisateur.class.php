@@ -13,20 +13,30 @@ class Utilisateur extends Personne {
 
 // On crée la méthode construct qui initialise les attributs de l'objet, en rappelant les attributs de la classe parent Personne
 
-    public function __construct (array $data, Roles $roles) {
-        $nom = $data['nom'];
-        $prenom = $data['prenom'];
-        $date = $data['date'];
-        $login = $data['login'];
-        $password = password_hash($data['password'], PASSWORD_DEFAULT);
-
-        $email = $data['email'];
-
+    public function __construct (string $nom, string $prenom, string $date,
+                                 string $login, string $email ,string $password, Roles $roles)
+    {
         parent::__construct($nom, $prenom, $date);
         $this-> login = $login;
         $this->email = $email;
         $this-> password = $password;
         $this->roles = $roles;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param string $email
+     */
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
     }
 
 

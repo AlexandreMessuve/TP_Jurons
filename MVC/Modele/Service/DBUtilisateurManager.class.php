@@ -16,17 +16,19 @@ class  DButilisateurManager
         $date = $utilisateur->getDate();
         $login = $utilisateur->getLogin();
         $password = $utilisateur->getPassword();
+        $email = $utilisateur->getEmail();
         $id_role = $utilisateur->getRoles()->getIdRole();
         $pdo = self::PDO();
-        $sql = "INSERT INTO `utilisateur` (`nom`, `prenom`, `date_de_naissance`, `login`, `password`, `id_role`) 
-                VALUES (?,?,?,?,?,?)";
+        $sql = "INSERT INTO `utilisateur` (`nom`, `prenom`, `date_de_naissance`, `login`,`email` , `password`, `id_role`) 
+                VALUES (?,?,?,?,?,?,?)";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(1, $nom);
         $stmt->bindParam(2, $prenom);
         $stmt->bindParam(3, $date);
         $stmt->bindParam(4, $login);
-        $stmt->bindParam(5, $password);
-        $stmt->bindParam(6, $id_role);
+        $stmt->bindParam(5, $email);
+        $stmt->bindParam(6, $password);
+        $stmt->bindParam(7, $id_role);
         return $stmt->execute();
     }
 
@@ -37,18 +39,20 @@ class  DButilisateurManager
         $prenom = $utilisateur->getPrenom();
         $date = $utilisateur->getDate();
         $login = $utilisateur->getLogin();
+        $email = $utilisateur->getEmail();
         $password = $utilisateur->getPassword();
         $id_role = $utilisateur->getRoles()->getIdRole();
         $pdo = self::PDO();
         $sql = "UPDATE `utilisateur` SET `nom` =?, `prenom` =?, `date_de_naissance` =?,
-                         `password` =?, `id_role` =? WHERE login =?";
+                         `password` =?, `email`, `id_role` =? WHERE login =?";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(1, $nom);
         $stmt->bindParam(2, $prenom);
         $stmt->bindParam(3, $date);
         $stmt->bindParam(4, $password);
-        $stmt->bindParam(5, $id_role);
-        $stmt->bindParam(6, $login);
+        $stmt->bindParam(5, $email);
+        $stmt->bindParam(6, $id_role);
+        $stmt->bindParam(7, $login);
         return  $stmt->execute();
     }
 
@@ -77,8 +81,10 @@ class  DButilisateurManager
     static function selectUtilisateurByLogin(string $login): object
     {
         $pdo = self::PDO();
-        $sql = "SELECT * FROM utilisateur where login=".$login;
-        $stmt = $pdo->query($sql);
+        $sql = "SELECT * FROM utilisateur where login=?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(1, $login);
+        $stmt->execute();
         return $stmt->fetch(PDO::FETCH_OBJ);
         }
 
