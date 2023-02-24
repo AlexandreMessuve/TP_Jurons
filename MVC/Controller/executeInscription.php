@@ -7,10 +7,10 @@ $role = DBRolesManager::selectRoles();
 $id_role = $role[1]->id_roles;
 $type_role = $role[1]->type_roles;
 $roles = new Roles($id_role, $type_role);
-if (isset($_POST)){
+if (isset($_POST)) {
     if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['email'])
-        && !empty($_POST['date']) && !empty($_POST['login']) && !empty($_POST['password'])){
-        if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+        && !empty($_POST['date']) && !empty($_POST['login']) && !empty($_POST['password'])) {
+        if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
             echo "Email address non valide";
         }
         $nom = strip_tags($_POST['nom']);
