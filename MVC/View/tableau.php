@@ -16,9 +16,8 @@
 
         <div class="div1">
             <h1> La boîte à mauvais comportement </h1>
-            <button> <img src="../View/assets/profilIcone.png" alt=""></button>
-
-
+            <button> <img src="../View/assets/img/profilIcone.png" alt=""></button>
+            <?= $_SESSION['login']->nom. ' ' . $_SESSION['login']->prenom;?>
         </div>
 
 
@@ -27,13 +26,44 @@
 
 
 
-        <div class="div2"> </div>
+        <div class="div2">
+            <table>
+                <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Email</th>
+                    <th>Date de naissance</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($_SESSION['users'] as $user){?>
+                <tr>
+                    <td>
+                        <?=$user->nom ?>
+                    </td>
+                    <td>
+                        <?=$user->prenom ?>
+                    </td>
+                    <td>
+                        <?=$user->email ?>
+                    </td>
+                    <td>
+                        <?=$user->date_naissance ?>
+                    </td>
+                <tr>
+                    <?php }?>
+                <tbody>
+            </table>
+        </div>
         <div class="div3"> </div>
         <div class="div4"> </div>
     </div>
 
 
-    <script type="text/javascript" src="../accueilScript.js"></script>
+    <script type="text/javascript" src="./assets/js/accueilScript.js"></script>
+
+
 </body>
 
 </html>
