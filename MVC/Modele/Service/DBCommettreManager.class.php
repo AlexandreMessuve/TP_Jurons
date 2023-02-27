@@ -58,4 +58,12 @@ class DBCommettreManager {
             $stmt = $pdo->query($sql);
             return $stmt->fetchAll(PDO::FETCH_OBJ);
         }
+
+        static function selectCountPetitJurons(string $login): array{
+            $pdo = self::PDO();
+            $sql = "SELECT COUNT(*) FROM commettre WHERE login_utilisateur = '$login' AND code_infraction = 'code_2'";
+            $stmt = $pdo->query($sql);
+            return $stmt->fetchAll();
+
+        }
 }

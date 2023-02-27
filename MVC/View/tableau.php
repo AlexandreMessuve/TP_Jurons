@@ -16,7 +16,7 @@
 
         <div class="div1">
             <h1> La boîte à mauvais comportement </h1>
-            <button> <img src="../View/assets/img/profilIcone.png" alt=""></button>
+            <button> <img src="../View/assets/charte/utilisateur.png" alt=""></button>
             <?= $_SESSION['login']->nom. ' ' . $_SESSION['login']->prenom;?>
         </div>
 
