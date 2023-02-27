@@ -19,7 +19,7 @@ class  DButilisateurManager
         $email = $utilisateur->getEmail();
         $id_role = $utilisateur->getRoles()->getIdRole();
         $pdo = self::PDO();
-        $sql = "INSERT INTO `utilisateur` (`nom`, `prenom`, `date_de_naissance`, `login`,`email` , `password`, `id_role`) 
+        $sql = "INSERT INTO `utilisateur` (`nom`, `prenom`, `date_naissance`, `login_utilisateur`,`email` , `password`, `id_roles`) 
                 VALUES (?,?,?,?,?,?,?)";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(1, $nom);
@@ -43,8 +43,8 @@ class  DButilisateurManager
         $password = $utilisateur->getPassword();
         $id_role = $utilisateur->getRoles()->getIdRole();
         $pdo = self::PDO();
-        $sql = "UPDATE `utilisateur` SET `nom` =?, `prenom` =?, `date_de_naissance` =?,
-                         `password` =?, `email`, `id_role` =? WHERE login =?";
+        $sql = "UPDATE `utilisateur` SET `nom` =?, `prenom` =?, `date_naissance` =?,
+                         `password` =?, `email`, `id_roles` =? WHERE login_utilisateur =?";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(1, $nom);
         $stmt->bindParam(2, $prenom);
@@ -61,7 +61,7 @@ class  DButilisateurManager
 
         $login = $utilisateur->getLogin();
         $pdo = self::PDO();
-        $sql = "DELETE FROM `utilisateur` WHERE login =?";
+        $sql = "DELETE FROM `utilisateur` WHERE login_utilisateur =?";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(1, $login);
         return  $stmt->execute();
@@ -81,7 +81,7 @@ class  DButilisateurManager
     static function selectUtilisateurByLogin(string $login): object
     {
         $pdo = self::PDO();
-        $sql = "SELECT * FROM utilisateur where login=?";
+        $sql = "SELECT * FROM utilisateur where login_utilisateur=?";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(1, $login);
         $stmt->execute();
