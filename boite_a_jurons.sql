@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 22 fév. 2023 à 13:24
+-- Généré le : lun. 27 fév. 2023 à 15:53
 -- Version du serveur : 10.4.27-MariaDB
--- Version de PHP : 7.4.33
+-- Version de PHP : 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,6 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `commettre` (
+  `id_commettre` int(11) NOT NULL,
   `code_infraction` varchar(50) NOT NULL,
   `login_utilisateur` varchar(50) NOT NULL,
   `login_balance` varchar(50) NOT NULL,
@@ -85,12 +86,19 @@ INSERT INTO `roles` (`id_roles`, `type_roles`) VALUES
 CREATE TABLE `utilisateur` (
   `login_utilisateur` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `nom` varchar(50) NOT NULL,
   `prenom` varchar(50) NOT NULL,
   `date_naissance` date NOT NULL,
   `id_roles` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `utilisateur`
+--
+
+INSERT INTO `utilisateur` (`login_utilisateur`, `email`, `password`, `nom`, `prenom`, `date_naissance`, `id_roles`) VALUES
+('admin', 'alex@gmail.com', '$2y$10$s4xwC6u.6oAj026SXLsxlOsaDlmYN0hpd5ghXn8HVRY/QEgcXvCdu', 'messuve', 'alexandre', '1997-04-16', 2);
 
 --
 -- Index pour les tables déchargées
@@ -100,8 +108,9 @@ CREATE TABLE `utilisateur` (
 -- Index pour la table `commettre`
 --
 ALTER TABLE `commettre`
-  ADD PRIMARY KEY (`code_infraction`,`login_utilisateur`),
-  ADD KEY `commettre_utilisateur0_FK` (`login_utilisateur`);
+  ADD PRIMARY KEY (`id_commettre`),
+  ADD KEY `commettre_utilisateur` (`login_utilisateur`) USING BTREE,
+  ADD KEY `commettre_infraction` (`code_infraction`) USING BTREE;
 
 --
 -- Index pour la table `infraction`
@@ -125,6 +134,12 @@ ALTER TABLE `utilisateur`
 --
 -- AUTO_INCREMENT pour les tables déchargées
 --
+
+--
+-- AUTO_INCREMENT pour la table `commettre`
+--
+ALTER TABLE `commettre`
+  MODIFY `id_commettre` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `roles`

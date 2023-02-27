@@ -43,8 +43,8 @@ class  DButilisateurManager
         $password = $utilisateur->getPassword();
         $id_role = $utilisateur->getRoles()->getIdRole();
         $pdo = self::PDO();
-        $sql = "UPDATE `utilisateur` SET `nom` =?, `prenom` =?, `date_de_naissance` =?,
-                         `password` =?, `email`, `id_role` =? WHERE login_utilisateur =?";
+        $sql = "UPDATE `utilisateur` SET `nom` =?, `prenom` =?, `date_naissance` =?,
+                         `password` =?, `email`, `id_roles` =? WHERE login_utilisateur =?";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(1, $nom);
         $stmt->bindParam(2, $prenom);
