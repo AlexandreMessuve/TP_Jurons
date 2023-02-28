@@ -1,0 +1,13 @@
+body {
+    background-color: black;
+}
+
+.logo {
+    text-align: center;
+}
+
+.parent {
+    display: flex;
+    justify-content: center;
+}
+
