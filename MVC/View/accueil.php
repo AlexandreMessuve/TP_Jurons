@@ -33,11 +33,13 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="balance.php">Le tableau des
-                                balances</a>
+                            <a class="nav-link" href="profil.php">Mon profil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="profil.php">Mon profil</a>
+                            <a class="nav-link" href="login.php">Se connecter</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="inscription.html">S'inscrire</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -45,9 +47,9 @@
                                 Que souhaitez vous consulter ?
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="graphique.php">Le graphique des jurons</a></li>
+                                <li><a class="dropdown-item" href="graphique.html">Le graphique des jurons</a></li>
                                 <li><a class="dropdown-item" href="tableau.php">Le tableau des utilisateurs</a></li>
-                                <li>
+                                <li><a class="dropdown-item" href="balance.php">Historique des balances</a></li>
                             </ul>
                         </li>
                     </ul>
