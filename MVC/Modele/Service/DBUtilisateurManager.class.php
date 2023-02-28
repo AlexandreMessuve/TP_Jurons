@@ -43,8 +43,8 @@ class  DButilisateurManager
         $password = $utilisateur->getPassword();
         $id_role = $utilisateur->getRoles()->getIdRole();
         $pdo = self::PDO();
-        $sql = "UPDATE `utilisateur` SET `nom` =?, `prenom` =?, `date_naissance` =?,
-                         `password` =?, `email`, `id_roles` =? WHERE login_utilisateur =?";
+        $sql = "UPDATE `utilisateur` SET `nom` =?, `prenom` =?, `date_de_naissance` =?,
+                         `password` =?, `email`, `id_role` =? WHERE login_utilisateur =?";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(1, $nom);
         $stmt->bindParam(2, $prenom);
@@ -91,19 +91,10 @@ class  DButilisateurManager
         static function selectUtilisateurByNom(): object
         {
             $pdo = self::PDO();
-            $sql = "SELECT nom, prenom, date_naissance FROM utilisateur"  ;
+            $sql = "SELECT nom, prenom FROM utilisateur"  ;
             $stmt = $pdo->query($sql);
             return $stmt->fetch(PDO::FETCH_OBJ);
         }
-
-        static function selectUtilisateurByLoginEmail(): object{
-            $pdo = self::PDO();
-            $sql = "SELECT email, login_utilisateur FROM utilisateur";
-            $stmt = $pdo->query($sql);
-            return $stmt->fetch(PDO::FETCH_OBJ);
-        }
-
-        
     
 
 

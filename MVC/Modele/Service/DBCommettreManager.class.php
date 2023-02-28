@@ -28,7 +28,7 @@ class DBCommettreManager {
     
             $codeInfraction = $commettre->getCodeInfraction();
             $pdo = self::PDO();
-            $sql = "DELETE FROM `utilisateur` WHERE code_infraction = $codeInfraction";
+            $sql = "DELETE FROM `utilisateur` WHERE code_infraction ='$codeInfraction'";
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(1, $login);
             return  $stmt->execute();
@@ -59,11 +59,57 @@ class DBCommettreManager {
             return $stmt->fetchAll(PDO::FETCH_OBJ);
         }
 
-        static function selectCountPetitJurons(string $login): array{
-            $pdo = self::PDO();
-            $sql = "SELECT COUNT(*) FROM commettre WHERE login_utilisateur = '$login' AND code_infraction = 'code_2'";
-            $stmt = $pdo->query($sql);
-            return $stmt->fetchAll();
+    static function selectCountRetard(): array
+    {
+        $pdo = self::PDO();
+        $sql = "SELECT nom,prenom,COUNT(code_infraction) AS retard, c.login_utilisateur FROM commettre AS c, utilisateur
+    AS u WHERE u.login_utilisateur = c.login_utilisateur AND code_infraction = 'code_1' GROUP BY login_utilisateur ORDER BY prenom;";
+        $stmt = $pdo->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
 
-        }
+    static function selectCountPetitJurons(): array
+    {
+        $pdo = self::PDO();
+        $sql = "SELECT nom,prenom,COUNT(code_infraction) AS petit_jurons, c.login_utilisateur FROM commettre AS c, utilisateur
+    AS u WHERE u.login_utilisateur = c.login_utilisateur AND code_infraction = 'code_2' GROUP BY login_utilisateur ORDER BY prenom;";
+        $stmt = $pdo->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    static function selectCountGrosJurons(): array
+    {
+        $pdo = self::PDO();
+        $sql = "SELECT nom,prenom,COUNT(code_infraction) AS gros_jurons, c.login_utilisateur FROM commettre AS c, utilisateur
+    AS u WHERE u.login_utilisateur = c.login_utilisateur AND code_infraction = 'code_3' GROUP BY login_utilisateur ORDER BY prenom;";
+        $stmt = $pdo->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    static function selectCountRot(): array
+    {
+        $pdo = self::PDO();
+        $sql = "SELECT nom,prenom,COUNT(code_infraction) AS rot, c.login_utilisateur FROM commettre AS c, utilisateur
+    AS u WHERE u.login_utilisateur = c.login_utilisateur AND code_infraction = 'code_4' GROUP BY login_utilisateur ORDER BY prenom ;";
+        $stmt = $pdo->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    static function selectCountGeste(): array
+    {
+        $pdo = self::PDO();
+        $sql = "SELECT nom,prenom,COUNT(code_infraction) AS geste, c.login_utilisateur FROM commettre AS c, utilisateur
+    AS u WHERE u.login_utilisateur = c.login_utilisateur AND code_infraction = 'code_5' GROUP BY login_utilisateur ORDER BY prenom;";
+        $stmt = $pdo->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    static function selectCountTotal(): array
+    {
+        $pdo = self::PDO();
+        $sql = "SELECT nom,prenom,COUNT(code_infraction) AS total, c.login_utilisateur FROM commettre AS c, utilisateur
+    AS u WHERE u.login_utilisateur = c.login_utilisateur  GROUP BY login_utilisateur ORDER BY prenom;";
+        $stmt = $pdo->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
 }

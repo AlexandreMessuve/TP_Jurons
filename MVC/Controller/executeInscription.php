@@ -7,22 +7,22 @@ $role = DBRolesManager::selectRoles();
 $id_role = $role[1]->id_roles;
 $type_role = $role[1]->type_roles;
 $roles = new Roles($id_role, $type_role);
-if (isset($_POST)) {
-    if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['email'])
-        && !empty($_POST['date']) && !empty($_POST['login']) && !empty($_POST['password'])) {
-        if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+if (isset($_REQUEST)) {
+    if (!empty($_REQUEST['nom']) && !empty($_REQUEST['prenom']) && !empty($_REQUEST['email'])
+        && !empty($_REQUEST['date']) && !empty($_REQUEST['login']) && !empty($_REQUEST['password'])) {
+        if (!filter_var($_REQUEST['email'], FILTER_VALIDATE_EMAIL)) {
             echo "Email address non valide";
         }
-        $nom = strip_tags($_POST['nom']);
-        $prenom = strip_tags($_POST['prenom']);
-        $email = $_POST['email'];
-        $login = strip_tags($_POST['login']);
-        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-        $date = $_POST['date'];
+        $nom = strip_tags($_REQUEST['nom']);
+        $prenom = strip_tags($_REQUEST['prenom']);
+        $email = $_REQUEST['email'];
+        $login = strip_tags($_REQUEST['login']);
+        $password = password_hash($_REQUEST['password'], PASSWORD_DEFAULT);
+        $date = $_REQUEST['date'];
         $utilisateur = new Utilisateur($nom, $prenom, $date, $login, $email, $password, $roles);
         $status = DButilisateurManager::insertUtilisateur($utilisateur);
         if ($status){
-            header('Location: ../View/login.php');
+            echo 'ok';
         }else{
             echo 'Impossible de vous inscrire';
         }

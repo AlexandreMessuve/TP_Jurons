@@ -15,7 +15,7 @@
     <div class="bg-dark p-4">
       <h5 class="text-white h4">La boite a jurons</h5>
       <div class="profil">
-        <img class="imgProfil" src="../View/assets/charte/utilisateur.png">
+        <img class="imgProfil" src="../View/assets/utilisateur.png">
       </div>
 
     </div>
