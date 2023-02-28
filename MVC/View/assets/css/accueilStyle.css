@@ -1,0 +1,18 @@
+body {
+    background-color: black;
+}
+
+.logo {
+    text-align: center;
+}
+
+.parent {
+    display: flex;
+    justify-content: center;
+}
+
+footer {
+    position: fixed; bottom: 0;
+    width : 100%;
+    
+}
