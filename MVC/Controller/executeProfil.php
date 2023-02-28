@@ -7,7 +7,7 @@ $nom = $_POST['nom'];
 
 $nomPrenom = DBUtilisateurManager::selectUtilisateurByNom();
 $loginEmail = DBUtilisateurManager::selectUtilisateurByLoginEmail();
-$modifPrenom = DBUtilisateurManager::updateUtilisateur($Login);
+$modifPrenom = DBUtilisateurManager::updateUtilisateur($login);
 
 
 $donneesUtilisateurLoginEmail = json_decode(json_encode($loginEmail), true);

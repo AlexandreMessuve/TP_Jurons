@@ -20,8 +20,5 @@ class DBLogin
         }else {
             return password_verify($password, $user->password);
         }
-
-
     }
-
 }

@@ -64,6 +64,5 @@ class DBCommettreManager {
             $sql = "SELECT COUNT(*) FROM commettre WHERE login_utilisateur = '$login' AND code_infraction = 'code_2'";
             $stmt = $pdo->query($sql);
             return $stmt->fetchAll();
-
         }
 }
