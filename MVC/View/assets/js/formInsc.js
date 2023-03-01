@@ -8,6 +8,7 @@
             success: function (response) {
                 if (response === 'ok') {
                     $('#connexion').trigger('reset');
+                    location.href = '../View/login.php';
                 }else if (response === 'erreur') {
                     alert('Formulaire incomplet !');
                 }
