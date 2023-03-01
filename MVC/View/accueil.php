@@ -53,7 +53,6 @@
                             </ul>
                         </li>
                     </ul>
-                    </form>
                 </div>
             </div>
         </div>

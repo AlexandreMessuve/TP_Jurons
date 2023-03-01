@@ -12,11 +12,11 @@ $total = DBCommettreManager::selectCountTotal();
 $json = [];
 
 if (empty($retard) && empty($petitJurons) && empty($grosJurons) && empty($rot) && empty($geste) && empty($total)) {
-    $json['success'] = 'erreur';
+    $json['success'] = 'no users found';
 }else{
     $json = countPenalite($retard, $petitJurons, $grosJurons, $rot, $geste, $total);
     $json['success'] = 'ok';
-    $json['currentUser'] = $_SESSION['login'];
-    $json['users'] = $_SESSION['user'];
 }
+$json['currentUser'] = $_SESSION['currentUser'];
+$json['users'] = $_SESSION['users'];
 echo json_encode($json);

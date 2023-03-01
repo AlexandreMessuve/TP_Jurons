@@ -6,7 +6,7 @@ require_once '../Modele/Commettre.class.php';
 if (empty($_REQUEST['loginCommettre'] || empty($_REQUEST['codeInfraction']))) {
     echo 'erreur';
 }if (!empty($_REQUEST['loginCommettre'] && !empty($_REQUEST['codeInfraction']))) {
-    $loginBalance = $_SESSION['login']->login_utilisateur;
+    $loginBalance = $_SESSION['currentUser']->login_utilisateur;
     $loginCommettre = $_REQUEST['loginCommettre'];
     $codeInfraction = $_REQUEST['codeInfraction'];
 

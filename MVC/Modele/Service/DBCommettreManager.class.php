@@ -23,14 +23,13 @@ class DBCommettreManager {
             return $stmt->execute();
         }
     
-        static function deletePenalite(Commettre $commettre): bool
+        static function deletePenalite($id): bool
         {
-    
-            $codeInfraction = $commettre->getCodeInfraction();
+
             $pdo = self::PDO();
-            $sql = "DELETE FROM `utilisateur` WHERE code_infraction ='$codeInfraction'";
+            $sql = "DELETE FROM `commettre` WHERE id_commettre =?";
             $stmt = $pdo->prepare($sql);
-            $stmt->bindParam(1, $login);
+            $stmt->bindParam(1, $id);
             return  $stmt->execute();
         }
 
@@ -38,14 +37,15 @@ class DBCommettreManager {
         {
             $pdo = self::PDO();
             $sql = "SELECT * FROM commettre";
-            $stmt = $pdo->query($sql);
-            return $stmt->fetchAll(PDO::FETCH_OBJ);
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
         static function selectBalance(): array
         {
             $pdo = self::PDO();
-            $sql = "SELECT login_balance, login_utilisateur FROM commettre";
+            $sql = "SELECT login_balance FROM commettre";
             $stmt = $pdo->query($sql);
             return $stmt->fetchAll(PDO::FETCH_OBJ);
         }
