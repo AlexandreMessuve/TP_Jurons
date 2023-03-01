@@ -1,12 +1,53 @@
-<!DOCTYPE html>  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="../View/assets/css/styleLogin.css">
+     <title>Login</title>
+</head>
+<body>
+     
+     <div class = "container">
+
+          <h1> Please Login </h1>
+
+          <form method="post" action="../Controller/executeLogin.php">
+               <div class="form-control">
+                    <input type="text" name="login" required />
+                    <label class="labelhidden"> Email </label>
+               </div>
+               <div class="form-control">
+                    <input type="password" name="password" required>
+                    <label> Password </label>
+               </div>
+               <button class="btn"> Login </button>
+               <p class="text"> Dont have an account ? <a href="#">Register</a> </p>
+
+
+               
+          </form>
+
+     </div>
+
+     <script src="../View/assets/js/loginScript.js"></script>
+</body>
+</html>
+
+
+<!-- <!DOCTYPE html>  
  <html>  
       <head>  
            <title>Login</title>  
-           <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
-           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
-           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
+               
       </head>  
-      <body>  
+<body>  
+
+
+
+
+
            <br />  
            <div class="container" style="width:500px;">  
 
@@ -22,5 +63,5 @@
                 </form>  
            </div>  
            <br />  
-      </body>  
- </html>  
+</body>  
+ </html>   -->
