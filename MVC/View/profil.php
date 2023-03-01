@@ -4,8 +4,9 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../View/assets/css/profilStyle.css">
+  
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <link rel="stylesheet" href="../View/assets/css/ProfilStyle.css">
   <title>Document</title>
 </head>
 <body>
@@ -24,51 +25,103 @@
       </button>
     </div>
   </nav>
-  <div class="containeurUn">
-    <div class="CadreUn" >
-    <div class="profil">
-        <img class="imgProfil" src="../View/assets/img/utilisateur.png">
-        <div class="emailLog">
-      <span class="badge text-bg-light"><p>email</p><?php  echo $_SESSION['donneesUtilisateurLoginEmail']['email']?></span>
-      <span class="badge text-bg-light"><p>Login</p><?php  echo $_SESSION['donneesUtilisateurLoginEmail']['login_utilisateur']?></span>
-        </div>
-        <div class="nomEtPrenom">
-        <span class="badge text-bg-light"><p>nom</p><?php  echo $_SESSION['donneesUtilisateur']['nom']?></span>
-      <span class="badge text-bg-light"><p>prenom</p><?php  echo $_SESSION['donneesUtilisateur']['prenom']?></span>
-      <span class="badge text-bg-light"><p>date Naissance</p><?php  echo $_SESSION['donneesUtilisateur']['date_naissance']?></span>
-        </div>
+
+
+
+<div class="container bootstrap snippets bootdey">
+<div class="row">
+  <div class="profile-nav col-md-3">
+      <div class="panel">
+          <div class="user-heading round">
+              <a href="#">
+                  <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="">
+              </a>
+              <h1><?php  echo $_SESSION['Utilisateur']['prenom']."\n".""?><?php  echo $_SESSION['Utilisateur']['nom']?></h1>
+              <p><?php  echo $_SESSION['Utilisateur']['email']?></p>
+          </div>
       </div>
-    </div>
-    <div class="CadreDeux" ></div>
   </div>
-  <div class="containeurProfil" >
-  </div>
-  
-<div class="containeurFormulaire">
-        <form action="../Controller/executeProfil.php" method="post" class="form-example">
-            <div class="form-example">
+  <div class="profile-info col-md-9">
+      <div class="panel">
+          
+          <div class="panel-body bio-graph-info">
+          <div class="card">
+            <div class="tools">
+              
+              </div>
+              <div class="card__content">
 
-            
-                <label for="Login"></label>
-                <input class="form-form-control form-control-lg" type="text" name="login" id="login" placeholder="Login:" required>
-            
-                <label for="email"></label>
-                <input class="form-form-control form-control-lg" type="text" name="email" id="email" placeholder="email:" required>
+              <h1>Bio Graph</h1>
+              <div class="">
+                  <div class="bio-row">
+                      <p><span>Login :</span><?php  echo $_SESSION['Utilisateur']['login_utilisateur']?></p>
+                  </div>
+                  
+                  <div class="bio-row">
+                      <p><span>Prenom :</span><?php  echo $_SESSION['Utilisateur']['prenom']."\n"."|"?><span> Nom :</span><?php  echo $_SESSION['Utilisateur']['prenom']?></p>
+                  </div>
+                  
+                  <div class="bio-row">
+                      <p><span>Date anniveraire :</span><?php  echo $_SESSION['Utilisateur']['date_naissance']?></p>
+                  </div>
+                  <div class="bio-row">
+                      <p><span>Email :</span><?php  echo $_SESSION['Utilisateur']['email']?></p>
+                  </div>
+              </div>
 
-                <label for="password"></label>
-                <input class="form-form-control form-control-lg" type="text" name="password" id="password" placeholder="password:" required>
             </div>
-            <div class="formulaireButton">
-                <input class="btn btn-secondary" class="submit" name="submit" type="submit" value="update" require />
-  </form>
-            
-  <form action="../Controller/executeProfil.php" method="post">  
-  <input type="submit" value="refresh">
-</form>
+            </div>
+              
+          </div>
+      </div>
+  </div>
+</div>
+</div>
+<div class="containeurHistorique" >
+<div class="cardDeux">
+  <div class="tools">
+  </div>
+  <div class="card__contentDeux">
+    <h5>Historique des Jurons</h1>
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Retard</th>
+      <th scope="col">Petite insulte</th>
+      <th scope="col">Grosse insulte</th>
+      <th scope="col">Rot</th>
+      <th scope="col">Geste</th>
+    </tr>
+    <tbody class="table-group-divider">
+    <tr>
+      <th>1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+      <td>Otto</td>
+
+    </tr>
+
+  </thead>
+
+
+  </div>
+</div>
+</div>
+
+<form action="../Controller/executeProfil.php">
+         <button type="submit">Click me</button>
+      </form>
 
 
   
      
+
+
+
+
+
+
 
 
 

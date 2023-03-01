@@ -88,23 +88,5 @@ class  DButilisateurManager
         return $stmt->fetch(PDO::FETCH_OBJ);
         }
 
-        static function selectUtilisateurByNom(): object
-        {
-            $pdo = self::PDO();
-            $sql = "SELECT nom, prenom FROM utilisateur"  ;
-            $stmt = $pdo->query($sql);
-            return $stmt->fetch(PDO::FETCH_OBJ);
-        }
-
-
-        static function selectUtilisateurByLoginEmail(): object
-        {
-            $pdo = self::PDO();
-            $sql = "SELECT email, login_utilisateur FROM utilisateur"  ;
-            $stmt = $pdo->query($sql);
-            return $stmt->fetch(PDO::FETCH_OBJ);
-        }
-
-
 }
 
