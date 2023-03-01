@@ -8,25 +8,23 @@
      <title>Login</title>
 </head>
 <body>
-     
-     <div class = "container">
 
-          <h1> Please Login </h1>
-
+     <div>
           <form method="post" action="../Controller/executeLogin.php">
-               <div class="form-control">
-                    <input type="text" name="login" required />
-                    <label class="labelhidden"> Email </label>
-               </div>
-               <div class="form-control">
-                    <input type="password" name="password" required>
-                    <label> Password </label>
-               </div>
-               <button class="btn"> Login </button>
-               <p class="text"> Dont have an account ? <a href="#">Register</a> </p>
 
+          <div class="input-group">
+               <input required type="text" name="login" autocomplete="off" class="input">
+               <label class="user-label">Login</label>
+          </div>
 
-               
+          <div class="input-group">
+               <input required type="text" name="password" autocomplete="off" class="input">
+               <label class="user-label">Password</label>
+          </div>
+
+          <button class="btn"> Login </button>
+               <p class="text"> Pas de compte ? <a href="../View/inscription.html"> <t class="hoverText">Register</t> </a> </p>
+
           </form>
 
      </div>
@@ -36,32 +34,3 @@
 </html>
 
 
-<!-- <!DOCTYPE html>  
- <html>  
-      <head>  
-           <title>Login</title>  
-               
-      </head>  
-<body>  
-
-
-
-
-
-           <br />  
-           <div class="container" style="width:500px;">  
-
-                <h3> LOGIN </h3> <br />  
-                <form method="post" action="../Controller/executeLogin.php">  
-                     <label>Username</label>  
-                     <input type="text" name="login" class="form-control" />  
-                     <br />  
-                     <label>Password</label>  
-                     <input type="password" name="password" class="form-control" />  
-                     <br />  
-                     <input type="submit" class="btn btn-info" value="Connexion" />
-                </form>  
-           </div>  
-           <br />  
-</body>  
- </html>   -->
