@@ -54,7 +54,7 @@
                     <option value="code_3">Gros juron</option>
                     <option value="code_4">Rot</option>
                     <option value="code_5">Geste deplacé</option>
-                    <option value="code_1">Retard</option>
+                    <option value="code_6">Retard</option>
                 </select>
 
                 <input type="submit" value="valider" >
@@ -67,7 +67,7 @@
             src="https://code.jquery.com/jquery-3.6.3.min.js"
             integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
             crossorigin="anonymous"></script>
-    <script type="text/javascript" src="assets/js/viewTabInfraction.js"></script>
+    <script type="text/javascript" src="./assets/js/viewTab.js"></script>
     <script type="text/javascript" src="assets/js/functions.js" onload="insertPenal()"></script>
 
 

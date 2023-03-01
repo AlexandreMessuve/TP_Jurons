@@ -5,21 +5,18 @@ require_once '../Modele/Commettre.class.php';
 
 session_start();
 
-//$pena = new Commettre('code_1', 'seb', 'zal');
-
-//DBCommettreManager::insertPenalite($pena);
-
-$total = DBCommettreManager::selectCountInfraction();
-
-print_r($total);
 
 
-//$tab = json_decode(json_encode($donnees), true);
+$donnees = DBCommettreManager::selectAllPenalitys();
 
 
-//$_SESSION["donneesCommettre"] = $tab;
+$tab = json_decode(json_encode($donnees), true);
+
+print_r($tab);
+
+$_SESSION["donneesCommettre"] = $tab;
 
 
 
-//header('Location: ../View/balance.php');
+header('Location: ../View/balance.php');
 
