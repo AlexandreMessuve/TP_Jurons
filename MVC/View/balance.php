@@ -28,7 +28,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link mx-2" href="graphique.php">Le graphique des jurons</a>
+                    <a class="nav-link mx-2" href="../Controller/executeGraphique.php">Le graphique des jurons</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link mx-2" aria-current="page" href="../View/balance.php">Top Balance</a>
