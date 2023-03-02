@@ -36,14 +36,14 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link mx-2" href="tableau.php">Balancer quelqu'un</a>
+                    <a class="nav-link mx-2" href="tableau.html">Balancer quelqu'un</a>
                 </li>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link mx-2" href="../Controller/executeProfil.php">Mon profil</a>
                 </li>
                 <li id="panelAdmin" style="display: none" class="nav-item">
-                    <a class="nav-link mx-2" href="../View/panelAdmin.php">Panel admin</a>
+                    <a class="nav-link mx-2" href="../View/panelAdmin.html">Panel admin</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link mx-2" href="../Controller/executeLogout.php">Se déconnecter</a>
@@ -52,7 +52,6 @@
         </div>
     </div>
 </nav>
-
 <button id="btnBalanceWeek" type="button" onclick="viewTabBalance('week')">Top de la semaine: </button>
 
 <table id="allTime" class="table table-striped">
