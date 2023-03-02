@@ -2,26 +2,16 @@
 require_once "../Modele/service/DBUtilisateurManager.class.php";
 require_once '../Modele/Utilisateur.class.php';
 session_start();
+$login = "antho";
 
+$Utilisateur = DBUtilisateurManager::selectUtilisateurByLogin($login);
 
+$Utilisateur = json_decode(json_encode($Utilisateur), true);
 
-$nomPrenom = DBUtilisateurManager::selectUtilisateurByNom();
-$loginEmail = DBUtilisateurManager::selectUtilisateurByLoginEmail();
-$modifPrenom = DBUtilisateurManager::updateUtilisateur($Utilisateur);
-
-
-$donneesUtilisateurLoginEmail = json_decode(json_encode($loginEmail), true);
-$donneesUtilisateur = json_decode(json_encode($nomPrenom), true);
-
-// $nom = key($donneesUtilisateur);
-// print_r($nom);
-$_SESSION['donneesUtilisateurLoginEmail'] = $donneesUtilisateurLoginEmail; 
-$_SESSION['donneesUtilisateur'] = $donneesUtilisateur; 
+$_SESSION['Utilisateur'] = $Utilisateur; 
 
 header('Location: ../View/profil.php');
 
-print_r($donneesUtilisateur);
-print_r($donneesUtilisateurLoginEmail);
+print_r($Utilisateur);
+
 ?>
-
-
