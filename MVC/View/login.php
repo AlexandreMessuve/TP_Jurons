@@ -1,3 +1,10 @@
+<?php session_start();
+
+require_once '../Modele/auth.php'; 
+if (est_connecte()) {
+    header ('Location: ../View/accueil.php');
+} ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
