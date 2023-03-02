@@ -122,7 +122,7 @@ function viewTabCommettre(){
             let success = json.success;
             let currentUser = json.currentUser;
             if (currentUser.id_roles === 2){
-                location.href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&feature=youtu.be";
+                location.href="https://www.youtube.com/watch?v=dQw4w9WgXcQ";
             }
             if (success === 'ok'){
 

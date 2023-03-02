@@ -28,21 +28,6 @@ $(function () {
 
 
             }
-            if (success === 'erreur') {
-                alert('Impossible de proceder aux changements');
-            }
-            if (success === 'no users found'){
-                alert("Il ni a actuellement pas d'infraction");
-            }
-            //Récupère les données de l'utilisateur connecté
-            let nom = currentUser.nom;
-            let prenom = currentUser.prenom;
-            $('#nomPrenom').html(prenom.charAt(0).toUpperCase() + prenom.slice(1) + ' ' + nom.toUpperCase());
-            if(currentUser.id_roles === '1'){
-                document.getElementById("btn").style.display = "block";
-            }else{
-                document.getElementById("btn").remove();
-            }
             //Récupère les données de tout les utilisateur pour les mettre dans le formulaire d'infraction.
             for (let i = 0; i < users.length; i++) {
                 let nom = users[i].nom.toUpperCase();
@@ -52,6 +37,13 @@ $(function () {
                     '<option value="' + users[i].login_utilisateur + '">' + nom +
                     ' ' + prenom + '</option>');
             }
+            if (success === 'erreur') {
+                alert('Impossible de proceder aux changements');
+            }
+            if (success === 'no users found'){
+                alert("Il ni a actuellement pas d'infraction");
+            }
+
         }
     });
 });
