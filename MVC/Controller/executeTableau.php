@@ -2,12 +2,17 @@
 require_once '../Modele/Service/DBCommettreManager.class.php';
 require_once '../Modele/function.php';
 session_start();
+$retard = 'code_1';
+$petit = 'code_2';
+$gros = 'code_3';
+$rot = 'code_4';
+$geste = 'code_5';
 
-$retard = DBCommettreManager::selectCountRetard();
-$petitJurons = DBCommettreManager::selectCountPetitJurons();
-$grosJurons = DBCommettreManager::selectCountGrosJurons();
-$rot = DBCommettreManager::selectCountRot();
-$geste = DBCommettreManager::selectCountGeste();
+$retard = DBCommettreManager::selectCountByCodeInfraction($retard);
+$petitJurons = DBCommettreManager::selectCountByCodeInfraction($petit);
+$grosJurons = DBCommettreManager::selectCountByCodeInfraction($gros);
+$rot = DBCommettreManager::selectCountByCodeInfraction($rot);
+$geste = DBCommettreManager::selectCountByCodeInfraction($geste);
 $total = DBCommettreManager::selectCountTotal();
 $json = [];
 

@@ -14,7 +14,7 @@ function countPenalite(array $retard, array $petitJurons, array $grosJurons, arr
                 $statusRetard = false;
                 for ($j = 0; $j < count($retard); $j++) {
                     if ($retard[$j]->login_utilisateur === $total[$i]->login_utilisateur) {
-                        $valRetard = $retard[$j]->retard;
+                        $valRetard = $retard[$j]->countInfra;
                         $statusRetard = true;
                     }
                 }if ($statusRetard){
@@ -29,7 +29,7 @@ function countPenalite(array $retard, array $petitJurons, array $grosJurons, arr
                 $statusPetit = false;
                 for ($j = 0; $j < count($petitJurons); $j++) {
                     if ($petitJurons[$j]->login_utilisateur === $total[$i]->login_utilisateur) {
-                        $valPetit = $petitJurons[$j]->petit_jurons;
+                        $valPetit = $petitJurons[$j]->countInfra;
                         $statusPetit = true;
                     }
                 }if ($statusPetit){
@@ -44,7 +44,7 @@ function countPenalite(array $retard, array $petitJurons, array $grosJurons, arr
                 $statusGros = false;
                 for ($j = 0; $j < count($grosJurons); $j++) {
                     if ($grosJurons[$j]->login_utilisateur === $total[$i]->login_utilisateur) {
-                        $valGros = $grosJurons[$j]->gros_jurons;
+                        $valGros = $grosJurons[$j]->countInfra;
                         $statusGros = true;
                     }
                 }if ($statusGros){
@@ -59,7 +59,7 @@ function countPenalite(array $retard, array $petitJurons, array $grosJurons, arr
                 $statusRot = false;
                 for ($j = 0; $j < count($rot); $j++) {
                     if ($rot[$j]->login_utilisateur === $total[$i]->login_utilisateur) {
-                        $valRot = $rot[$j]->rot;
+                        $valRot = $rot[$j]->countInfra;
                         $statusRot = true;
                     }
                 }if ($statusRot){
@@ -74,7 +74,7 @@ function countPenalite(array $retard, array $petitJurons, array $grosJurons, arr
                 $statusGeste = false;
                 for ($j = 0; $j < count($geste); $j++) {
                     if ($geste[$j]->login_utilisateur === $total[$i]->login_utilisateur) {
-                        $valGeste = $geste[$j]->geste;
+                        $valGeste = $geste[$j]->countInfra;
                         $statusGeste = true;
                     }
                 }if ($statusGeste){
