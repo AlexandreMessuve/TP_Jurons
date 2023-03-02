@@ -1,10 +1,3 @@
-<?php session_start();
-
-require_once '../Modele/function.php';
-if (est_connecte()) {
-    header ('Location: ../View/index.php');
-} ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +10,7 @@ if (est_connecte()) {
 <body>
 
      <div>
-          <form method="post" action="../Controller/executeLogin.php">
+          <form method="post" action="../Controller/executeLogin.php" class="loginConnect">
 
           <div class="input-group">
                <input required type="text" name="login" autocomplete="off" class="input">
@@ -34,9 +27,13 @@ if (est_connecte()) {
 
           </form>
 
+
      </div>
 
-     <script src="../View/assets/js/loginScript.js"></script>
+     <div>
+          <img src="../View/assets/img/pixou.png" alt="">
+     </div>
+
 </body>
 </html>
 
