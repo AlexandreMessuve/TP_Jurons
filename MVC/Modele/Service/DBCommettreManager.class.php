@@ -7,57 +7,68 @@ class DBCommettreManager {
         return new PDO('mysql:host=localhost;dbname=boite_a_jurons', 'root', '');
     }
 
-        //Method static qui permet d'inserer une infraction dans la bdd
-        static function insertPenalite(Commettre $commettre): bool
-        {
-            $codeInfraction = $commettre->getCodeInfraction();
-            $loginUtilisateur = $commettre->getLoginUtilisateur();
-            $loginBalance = $commettre->getLoginBalance();
-            $pdo = self::PDO();
-            $sql = "INSERT INTO commettre (`code_infraction`, `login_utilisateur`, `login_balance`) 
+    //Method static qui permet d'inserer une infraction dans la bdd
+    static function insertPenalite(Commettre $commettre): bool
+    {
+        $codeInfraction = $commettre->getCodeInfraction();
+        $loginUtilisateur = $commettre->getLoginUtilisateur();
+        $loginBalance = $commettre->getLoginBalance();
+        $pdo = self::PDO();
+        $sql = "INSERT INTO commettre (`code_infraction`, `login_utilisateur`, `login_balance`) 
                     VALUES (?,?,?)";
-            $stmt = $pdo->prepare($sql);
-            $stmt->bindParam(1, $codeInfraction);
-            $stmt->bindParam(2, $loginUtilisateur);
-            $stmt->bindParam(3, $loginBalance);
-            return $stmt->execute();
-        }
-    
-        static function deletePenalite($id): bool
-        {
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(1, $codeInfraction);
+        $stmt->bindParam(2, $loginUtilisateur);
+        $stmt->bindParam(3, $loginBalance);
+        return $stmt->execute();
+    }
 
-            $pdo = self::PDO();
-            $sql = "DELETE FROM `commettre` WHERE id_commettre =?";
-            $stmt = $pdo->prepare($sql);
-            $stmt->bindParam(1, $id);
-            return  $stmt->execute();
-        }
+    static function deletePenalite($id): bool
+    {
 
-        static function selectAllPenalitys(): array
-        {
-            $pdo = self::PDO();
-            $sql = "SELECT * FROM commettre";
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        }
+        $pdo = self::PDO();
+        $sql = "DELETE FROM `commettre` WHERE id_commettre =?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(1, $id);
+        return  $stmt->execute();
+    }
 
-        static function selectBalance(): array
-        {
-            $pdo = self::PDO();
-            $sql = "SELECT login_balance FROM commettre";
-            $stmt = $pdo->query($sql);
-            return $stmt->fetchAll(PDO::FETCH_OBJ);
-        }
+    static function selectAllPenalitys(): array
+    {
+        $pdo = self::PDO();
+        $sql = "SELECT * FROM commettre";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
-        
-        static function selectBestBalance(): array 
-        {
-            $pdo = self::PDO();
-            $sql = "SELECT COUNT(*), login_balance FROM commettre GROUP BY login_balance";
-            $stmt = $pdo->query($sql);
-            return $stmt->fetchAll(PDO::FETCH_OBJ);
-        }
+    static function selectBalance(): array
+    {
+        $pdo = self::PDO();
+        $sql = "SELECT login_balance FROM commettre";
+        $stmt = $pdo->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
+
+    static function selectBestBalance(): array
+    {
+        $pdo = self::PDO();
+        $sql = "SELECT nom,prenom,COUNT(login_balance) AS total, c.login_balance FROM commettre AS c , utilisateur AS u 
+            WHERE  login_balance = u.login_utilisateur GROUP BY login_balance ORDER BY total DESC;";
+        $stmt = $pdo->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    static function selectBestBalanceWeek(): array
+    {
+        $pdo = self::PDO();
+        $sql = "SELECT nom,prenom,COUNT(login_balance) AS total, c.login_balance FROM commettre AS c , utilisateur AS u 
+            WHERE  login_balance = u.login_utilisateur AND DATEDIFF(current_timestamp,date_infraction ) <= 7 GROUP BY login_balance ORDER BY total DESC;";
+        $stmt = $pdo->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 
     static function selectCountByCodeInfraction(string $codeInfraction): array
     {
