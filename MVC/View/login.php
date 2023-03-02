@@ -2,7 +2,7 @@
 
 require_once '../Modele/function.php';
 if (est_connecte()) {
-    header ('Location: ../View/accueil.php');
+    header ('Location: ../View/index.php');
 } ?>
 
 <!DOCTYPE html>

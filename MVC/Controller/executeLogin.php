@@ -13,11 +13,11 @@ if ($statut) {
     $_SESSION['currentUser'] = DBUtilisateurManager::selectUtilisateurByLogin($login);
     $_SESSION['users'] = DBUtilisateurManager::selectUtilisateur();
     $_SESSION['connecte'] = 1;
-    header ('Location: ../View/accueil.php');
+    header ('Location: ../View/index.php');
 } else {
     echo "error";
 }
 
 if (est_connecte()) {
-    header ('Location: ../View/accueil.php');
+    header ('Location: ../View/index.php');
   }
