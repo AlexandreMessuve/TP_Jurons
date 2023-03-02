@@ -65,7 +65,7 @@ function adminLoad(){
 function viewTabBalance(action){
     $.ajax({
         type: 'POST',
-        url: '../Controller/executeBalance.php',
+        url: '../Controller/executeTabBalance.php',
         data: {
             action: action
         },
