@@ -92,4 +92,12 @@ class DBCommettreManager {
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
+    static function totalTarifByLogin() {
+        $pdo = self::PDO();
+        $sql = "SELECT nom, prenom,c.login_utilisateur, ROUND(SUM(tarif_infraction),2) as totalPrix  FROM commettre AS c , infraction AS i , utilisateur AS u WHERE c.code_infraction = i.code_infraction AND c.login_utilisateur = u.login_utilisateur GROUP BY login_utilisateur";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
+
