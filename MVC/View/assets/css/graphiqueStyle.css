@@ -1,16 +1,11 @@
-body{
-    background-image: url(../img/backround_marron.png);
-    background-size: cover;
-    height: 100% ;
-}
-.parent{
+body {
     display: flex;
-    justify-content: space-between;
-    margin-top: 6%;
-    margin-left: 15%;
-}
-.div2{
-    margin-top: 5%;
-    
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 }
 
+#myChart {
+    height: 600px !important;
+    width : 100% !important;
+}
