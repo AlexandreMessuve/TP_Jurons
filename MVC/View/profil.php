@@ -67,6 +67,9 @@ if (!est_connecte()) {
     </div>
 </nav>
 
+
+
+
 <div class="container bootstrap snippets bootdey">
 <div class="row">
   <div class="profile-nav col-md-3">
@@ -77,6 +80,77 @@ if (!est_connecte()) {
               </a>
               <h1><?php  echo $_SESSION['Utilisateur']['prenom']."\n".""?><?php  echo $_SESSION['Utilisateur']['nom']?></h1>
               <p><?php  echo $_SESSION['Utilisateur']['email']?></p>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Modifier profil
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier profil</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <form  method="post" action="../Controller/executeProfil.php"   class="row g-3">
+  <div class="col-auto">
+    <label for="staticEmail2" class="visually-hidden">Login</label>
+    <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="<?php  echo $_SESSION['Utilisateur']['login_utilisateur']?>">
+  </div>
+  <div class="col-auto">
+    <label for="inputPassword2" class="visually-hidden">Nouveau login</label>
+    <input class="form-control" type="text" placeholder="Nouveau login" aria-label="default input example">
+  </div>
+
+
+  <div class="col-auto">
+    <label for="staticEmail2" class="visually-hidden">Email</label>
+    <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="<?php  echo $_SESSION['Utilisateur']['email']?>">
+  </div>
+  <div class="col-auto">
+    <label for="inputPassword2" class="visually-hidden">Nouvelle adresse email</label>
+    <input class="form-control" type="text" placeholder="Nouvelle adresse email" aria-label="default input example">
+  </div>
+  
+  <div class="col-auto">
+    <label for="staticEmail2" class="visually-hidden">Nom</label>
+    <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="<?php  echo $_SESSION['Utilisateur']['nom']?>">
+  </div>
+  <div class="col-auto">
+    <label for="inputPassword2" class="visually-hidden">Nom</label>
+    <input class="form-control" type="text" placeholder="Nouveau Nom" aria-label="default input example">
+  </div>
+
+  <div class="col-auto">
+    <label for="staticEmail2" class="visually-hidden">Prenom</label>
+    <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="<?php  echo $_SESSION['Utilisateur']['prenom']?>">
+  </div>
+  <div class="col-auto">
+    <label for="inputPassword2" class="visually-hidden">prenom</label>
+    <input class="form-control" type="text" placeholder="Nouveu prenom" aria-label="default input example">
+  </div>
+
+
+  <div class="col-auto">
+    <label for="staticEmail2" class="visually-hidden">Date naissance</label>
+    <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="<?php  echo $_SESSION['Utilisateur']['date_naissance']?>">
+  </div>
+  <div class="col-auto">
+    <label for="inputPassword2" class="visually-hidden">Date naissance</label>
+    <input class="form-control" type="date" placeholder="Date naissance" aria-label="default input example">
+  </div>
+
+
+  <div class="col-auto">
+    <button type="submit" class="btn btn-primary mb-3">Confirm identity</button>
+  </div>
+</form>
+      </div>
+    </div>
+  </div>
+</div>
           </div>
       </div>
   </div>
@@ -101,11 +175,12 @@ if (!est_connecte()) {
                   </div>
                   
                   <div class="bio-row">
-                      <p><span>Date anniveraire :</span><?php  echo $_SESSION['Utilisateur']['date_naissance']?></p>
+                      <p><span>Date naissance :</span><?php  echo $_SESSION['Utilisateur']['date_naissance']?></p>
                   </div>
                   <div class="bio-row">
                       <p><span>Email :</span><?php  echo $_SESSION['Utilisateur']['email']?></p>
                   </div>
+                  
               </div>
 
             </div>
@@ -148,26 +223,13 @@ if (!est_connecte()) {
 </div>
 </div>
 
+
 <form action="../Controller/executeProfil.php">
          <button type="submit">Click me</button>
       </form>
-
-
   
-     
 
-
-
-
-
-
-
-
-
-
-
-
-  
+ 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   
 </body>

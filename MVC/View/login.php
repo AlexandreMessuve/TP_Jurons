@@ -1,3 +1,10 @@
+<?php session_start();
+
+require_once '../Modele/function.php'; 
+if (est_connecte()) {
+    header ('Location: ../View/accueil.php');
+} ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +17,7 @@
 <body>
 
      <div>
-          <form method="post" action="../Controller/executeLogin.php" class="loginConnect">
+          <form method="post" action="../Controller/executeLogin.php">
 
           <div class="input-group">
                <input required type="text" name="login" autocomplete="off" class="input">
@@ -18,7 +25,7 @@
           </div>
 
           <div class="input-group">
-               <input required type="password" name="password" autocomplete="off" class="input">
+               <input required type="text" name="password" autocomplete="off" class="input">
                <label class="user-label">Password</label>
           </div>
 
@@ -27,12 +34,13 @@
 
           </form>
 
-
      </div>
 
-     <div>
-          <img src="../View/assets/img/pixou.png" alt="">
-     </div>
+     <script src="../View/assets/js/loginScript.js"></script>
+</body>
+</html>
+
+
 
 </body>
 </html>
