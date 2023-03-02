@@ -45,10 +45,74 @@ function insertPenal(){
         return false;
     });
 }
-function logout(){
-    location.href="../Controller/executeLogout.php";
+
+function adminLoad(){
+    $.ajax({
+        type: 'GET',
+        url: '../Controller/executeAdminLoad.php',
+        success: function (response){
+            let json = JSON.parse(response);
+            let currentUser = json.currentUser;
+            if(currentUser.id_roles === 1){
+                document.getElementById('panelAdmin').style.display = 'block';
+            }if (currentUser.id_roles === 2){
+                document.getElementById('panelAdmin').remove();
+            }
+        }
+    });
 }
 
+function viewTabBalance(action){
+    $.ajax({
+        type: 'POST',
+        url: '../Controller/executeTabBalance.php',
+        data: {
+            action: action
+        },
+        success: function (response){
+            let json = JSON.parse(response);
+            let success = json.success;
+            let newAction = json.action;
+            if(success === 'ok'){
+                $('#balance').empty();
+                if (newAction === 'allTime'){
+                    let balancesAllTime = json.allTime;
+                    for(let i = 0; i < balancesAllTime.length; i++){
+                        let nom = balancesAllTime[i].nom.toUpperCase();
+                        let prenom = balancesAllTime[i].prenom.charAt(0).toUpperCase() + balancesAllTime[i].prenom.slice(1);
+                        let place = i+1;
+                        let total = balancesAllTime[i].total;
+                        $("#balance").append(
+                            '<tr>'+
+                            '<td>'+ place + '</td>'+
+                            '<td>'+ nom + '</td>'+
+                            '<td>'+ prenom + '</td>' +
+                            '<td>'+ total + '</td>'
+                        );
+                    }
+                }
+                if (newAction === 'week'){
+                    let balancesWeek = json.week;
+                    for(let i = 0; i < balancesWeek.length; i++){
+                        let nom = balancesWeek[i].nom.toUpperCase();
+                        let prenom = balancesWeek[i].prenom.charAt(0).toUpperCase() + balancesWeek[i].prenom.slice(1);
+                        let place = i+1;
+                        let total = balancesWeek[i].total;
+                        $("#balance").append(
+                            '<tr>'+
+                            '<td>'+ place + '</td>'+
+                            '<td>'+ nom + '</td>'+
+                            '<td>'+ prenom + '</td>' +
+                            '<td>'+ total + '</td>'
+                        );
+                    }
+                }
+            }if (success === 'erreur'){
+                alert("Impossible d'afficher le tableau");
+            }
+        }
+    });
+}
 function viewTabCommettre(){
     $.ajax({
         type: 'get',
@@ -56,7 +120,10 @@ function viewTabCommettre(){
         success: function (response) {
             let json = JSON.parse(response);
             let success = json.success;
-
+            let currentUser = json.currentUser;
+            if (currentUser.id_roles === 2){
+                location.href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&feature=youtu.be";
+            }
             if (success === 'ok'){
 
                 let infraction;
@@ -118,3 +185,4 @@ function deleteCommettre(id){
         }
     })
 }
+

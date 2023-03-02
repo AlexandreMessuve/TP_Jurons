@@ -10,23 +10,62 @@
   <title>Document</title>
 </head>
 <body>
-<?php session_start ()?>
-  <div class="collapse" id="navbarToggleExternalContent">
-    <div class="bg-dark p-4">
-      <h5 class="text-white h4">La boite a jurons</h5>
-    </div>
-  </div>
-  <nav class="navbar navbar-dark bg-dark">
-    <div class="container-fluid">
-    </div>
-    
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    </div>
-  </nav>
 
 
+<?php session_start() ?>
+
+<?php
+require '../Modele/function.php';
+if (!est_connecte()) {
+    header('Location: login.php');
+    exit();
+}
+?>
+
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand d-md-none d-xs-block py-3" href="#">
+            <img src="/static_files/images/logos/beer_white.png" height="40" alt="Company Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link mx-2 active" aria-current="page" href="accueil.php">Accueil</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link mx-2" href="graphique.php">Le graphique des jurons</a>
+                </li>
+                <form enctype="multipart/form-data" action="../Controller/executeBalance.php" method="post">
+                    <li class="nav-item">
+                        <a class="nav-link mx-2" href="../Controller/executeBalance.php">Historique des balances</a>
+                    </li>
+                </form>
+
+                <li class="nav-item">
+                    <a class="nav-link mx-2" href="tableau.php">Le tableau des utilisateurs</a>
+                </li>
+                </li>
+                <form enctype="multipart/form-data" action="../Controller/executeBalance.php" method="post">
+                <li class="nav-item">
+                        <a class="nav-link mx-2" href="../Controller/executeProfil.php">Mon profil</a>
+                    </li>
+                </form>
+                <?php if (est_connecte()): ?>
+                    <li class="nav-item">
+                        <a class="nav-link mx-2" href="../Controller/executeLogout.php">Se déconnecter</a>
+                    </li>
+                <?php endif ?>
+            </ul>
+        </div>
+    </div>
+</nav>
 
 <div class="container bootstrap snippets bootdey">
 <div class="row">
