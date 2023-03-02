@@ -1,6 +1,6 @@
 <?php session_start();
 
-require_once '../Modele/auth.php'; 
+require_once '../Modele/function.php';
 if (est_connecte()) {
     header ('Location: ../View/accueil.php');
 } ?>
@@ -25,7 +25,7 @@ if (est_connecte()) {
           </div>
 
           <div class="input-group">
-               <input required type="text" name="password" autocomplete="off" class="input">
+               <input required type="password" name="password" autocomplete="off" class="input">
                <label class="user-label">Password</label>
           </div>
 

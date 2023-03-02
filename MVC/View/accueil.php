@@ -17,7 +17,7 @@
     <?php session_start() ?>
 
     <?php
-    require '../Modele/auth.php';
+    require '../Modele/function.php';
     if (!est_connecte()) {
         header('Location: login.php');
         exit();
