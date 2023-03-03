@@ -49,22 +49,31 @@
         </div>
     </div>
 </nav>
-<button id="btnBalanceWeek" type="button" onclick="viewTabBalance('week')">Top de la semaine: </button>
 
-<table id="allTime" class="table table-striped">
-    <thead class="black white-text" style="background-color: #673ab7">
-    <tr>
-        <th scope="col">Place : </th>
-        <th scope="col">Nom</th>
-        <th scope="col">Prenom</th>
-        <th scope="col">Total</th>
-    </tr>
-    </thead>
-    <tbody id="balance">
+<div class="contenu">
+    <div class="headTab">
+        <div class="titre">
+            <button id="btnBalanceWeek" type="button" onclick="viewTabBalance('week')">Top de la semaine: </button>
+        </div>
+    </div>
+    <div class="tableau">
+        <table id="allTime" class="table table-striped">
+            <thead class="black white-text" style="background-color: #673ab7">
+            <tr>
+                <th scope="col">Place : </th>
+                <th scope="col">Nom</th>
+                <th scope="col">Prenom</th>
+                <th scope="col">Total</th>
+            </tr>
+            </thead>
+            <tbody id="balance">
 
-    </tbody>
+            </tbody>
 
-</table>
+        </table>
+    </div>
+</div>
+
 
 
 <footer class="text-center text-white fixed-bottom" style="background-color: #673ab7">
