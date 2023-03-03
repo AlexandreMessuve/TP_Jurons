@@ -17,7 +17,7 @@ if (est_connecte()) {
 <body>
 
      <div>
-          <form method="post" action="../Controller/executeLogin.php">
+          <form method="post" action="../Controller/executeLogin.php" class="loginConnect">
 
           <div class="input-group">
                <input required type="text" name="login" autocomplete="off" class="input">
