@@ -85,14 +85,7 @@
         $totalPrix[] = $data['totalPrix'];
     }
 
-    $_SESSION["total"];
-
-    foreach ($_SESSION["total"] as $data) {
-        $total = $data['total'];
-    }
-
-
-
+    $total = $_SESSION['total'];
     ?>
 
 
@@ -148,7 +141,7 @@
             </script>
         </div>
         <h1>Total :
-            <?php echo json_encode($total);
+            <?php echo $total;
                   echo " €"?>
         </h1>
     </div>

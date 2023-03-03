@@ -1,0 +1,35 @@
+.contenu {  display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+    ". headTab headTab ."
+    ". tableau tableau ."
+    ". tableau tableau ."
+}
+
+.tableau {
+    grid-area: tableau!important;
+    overflow-y: scroll ;
+    height: 350px!important;
+}
+
+thead{
+    position: sticky;
+    top: 0px;
+    background-color: #673ab7
+}
+.headTab {  display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+    ". . ."
+    ". . ."
+    "titre titre titre";
+    grid-area: headTab;
+}
+
+.titre { grid-area: titre; }

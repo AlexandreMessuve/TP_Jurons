@@ -53,9 +53,9 @@ function adminLoad(){
         success: function (response){
             let json = JSON.parse(response);
             let currentUser = json.currentUser;
-            if(currentUser.id_roles === 1){
+            if(currentUser.id_roles === "1" || currentUser.id_roles === 1){
                 document.getElementById('panelAdmin').style.display = 'block';
-            }if (currentUser.id_roles === 2){
+            }if (currentUser.id_roles === "2" || currentUser.id_roles === 2){
                 document.getElementById('panelAdmin').remove();
             }
         }
@@ -87,7 +87,8 @@ function viewTabBalance(action){
                             '<td>'+ place + '</td>'+
                             '<td>'+ nom + '</td>'+
                             '<td>'+ prenom + '</td>' +
-                            '<td>'+ total + '</td>'
+                            '<td>'+ total + '</td>' +
+                            '</tr>'
                         );
                     }
                 }
@@ -103,7 +104,8 @@ function viewTabBalance(action){
                             '<td>'+ place + '</td>'+
                             '<td>'+ nom + '</td>'+
                             '<td>'+ prenom + '</td>' +
-                            '<td>'+ total + '</td>'
+                            '<td>'+ total + '</td>' +
+                            '</tr>'
                         );
                     }
                 }
@@ -121,14 +123,15 @@ function viewTabCommettre(){
             let json = JSON.parse(response);
             let success = json.success;
             let currentUser = json.currentUser;
-            if (currentUser.id_roles === 2){
-                location.href="https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+            if (currentUser.id_roles === "2" || currentUser.id_roles === 2){
+                location.href= "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
             }
             if (success === 'ok'){
-
                 let infraction;
                 let penalitys = json.penalitys;
                 $('#viewCommettre').empty();
+                $('#viewCommettre2').empty();
+                $('#viewCommettre3').empty();
                 for (let i = 0; i < penalitys.length; i++) {
                     let id = penalitys[i].id_commettre;
                     let login = penalitys[i].login_utilisateur;
@@ -149,16 +152,15 @@ function viewTabCommettre(){
                     if (penalitys[i].code_infraction === 'code_5'){
                         infraction = 'Geste'
                     }
-
-                    $('#viewCommettre').append(
-                        '<tr id="'+ id +'">'+
-                        '<td>'+ infraction +'</td>' +
-                        '<td>'+ login +'</td>' +
-                        '<td>'+ balance +'</td>' +
-                        '<td>'+ date +'</td>' +
-                        '<td><button class="btn btn-danger" onclick="deleteCommettre('+ id +')" >Supprimer</button></td>' +
-                        '</tr>'
-                    )
+                        $('#viewCommettre').append(
+                            '<tr id="'+ id +'">'+
+                            '<td>'+ infraction +'</td>' +
+                            '<td>'+ login +'</td>' +
+                            '<td>'+ balance +'</td>' +
+                            '<td>'+ date +'</td>' +
+                            '<td><button class="btn btn-danger" onclick="deleteCommettre('+ id +')" >Supprimer</button></td>' +
+                            '</tr>'
+                        )
                 }
 
             }else if (success === 'erreur'){
