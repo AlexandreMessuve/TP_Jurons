@@ -24,14 +24,14 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                    <a class="nav-link mx-2 active"  href="index.php">Accueil</a>
+                    <a class="nav-link mx-2"  href="index.php">Accueil</a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link mx-2" href="../Controller/executeGraphique.php">Le graphique des jurons</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mx-2" aria-current="page" href="../View/balance.php">Top Balance</a>
+                    <a class="nav-link mx-2 active" aria-current="page" href="../View/balance.php">Top Balance</a>
                 </li>
 
 

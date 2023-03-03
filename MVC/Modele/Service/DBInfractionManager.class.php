@@ -62,8 +62,10 @@ class DBInfractionManager {
         static function selectInfractionBycode(string $codeInfraction): object
         {
             $pdo = self::PDO();
-            $sql = "SELECT * FROM infraction where code_infraction=".$codeInfraction;
-            $stmt = $pdo->query($sql);
+            $sql = "SELECT * FROM infraction where code_infraction=?";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(1, $codeInfraction);
+            $stmt->execute();
             return $stmt->fetch(PDO::FETCH_OBJ);
             }
 }

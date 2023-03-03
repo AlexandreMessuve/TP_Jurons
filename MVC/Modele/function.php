@@ -105,3 +105,32 @@ function forcer_utilisateur_connecte () : void {
         exit();
     }
 }
+
+function envoieMailPenality(string $email, string $nom, string $prenom, string $infraction) : bool
+{
+    $to = $email;
+    $subject = "Tu as été balancé(e)";
+    $headers = "From: boiteajurons@gmail.com \r\n";
+    $headers .= "MIME-Version: 1.0\r\n";
+    $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+    ;
+
+    $message = "<html><body style='margin: 0'>";
+    $message .= "<div style='text-align: center'><img height='200' width='auto' src='https://www.zupimages.net/up/23/09/g7ms.png' alt='logo boite a jurons'/></div>";
+    $message .= "<h3 style='text-align: center; font-family: sans-serif;' >".strtoupper($nom) . ' ' . ucfirst($prenom) . " t'a balancé(e)</h3>";
+    $message .= "<div><p style='text-align: center; font-family: sans-serif; font: bold;'>".
+        "Type d'infraction :". $infraction ."</p><br />".
+        "<p style='text-align: center; font-family: sans-serif;'>".
+        "Si il y a une erreur, veuillez nous en faire part en repondant a ce mail.</p><br />".
+        "<p style='text-align:center; font-family: sans-serif;'>".
+        "Cordialement, <br/>".
+        "LA BOITE A JURONS</p></div>";
+    $message.= "<footer style='background-color: #673ab7;'>".
+        "<h6 style='text-align: center; font-family: sans-serif; color: white'>".
+        "© Copyright : LA BOITE A JURONS tout droit reservé</h6></footer>";
+    $message .= "</body></html>";
+
+
+    return mail($to, $subject, $message, $headers);
+
+}
