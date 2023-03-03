@@ -78,8 +78,8 @@ if (!est_connecte()) {
               <a href="#">
                   <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="">
               </a>
-              <h1><?php  echo $_SESSION['Utilisateur']['prenom']."\n".""?><?php  echo $_SESSION['Utilisateur']['nom']?></h1>
-              <p><?php  echo $_SESSION['Utilisateur']['email']?></p>
+              <h1><?php  echo $_SESSION['currentUser']->prenom."\n".""?><?php  echo $_SESSION['currentUser']->nom?></h1>
+              <p><?php  echo $_SESSION['currentUser']->email?></p>
               <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Modifier profil
 </button>
@@ -90,56 +90,54 @@ if (!est_connecte()) {
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier profil</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <P type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></P>
       </div>
 
       <div class="modal-body">
-        <form  method="post" action="../Controller/executeProfil.php"   class="row g-3">
+        <form  method="post" action="../Controller/executeProfilModif.php"   class="row g-3">
   <div class="col-auto">
-    <label for="staticEmail2" class="visually-hidden">Login</label>
-    <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="<?php  echo $_SESSION['Utilisateur']['login_utilisateur']?>">
+    <P for="staticEmail2" class="visually-hidden">Login</Pl>
+    <p type="text" readonly class="form-control-plaintext"><?php  echo $_SESSION['currentUser']->login_utilisateur?></p>
   </div>
   <div class="col-auto">
-    <label for="inputPassword2" class="visually-hidden">Nouveau login</label>
-    <input class="form-control" type="text" placeholder="Nouveau login" aria-label="default input example">
+    <label for="login" class="visually-hidden">Nouveau login</label>
+    <input class="form-control" type="text" name="login" placeholder="Nouveau login" aria-label="default input example">
   </div>
-
-
   <div class="col-auto">
-    <label for="staticEmail2" class="visually-hidden">Email</label>
-    <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="<?php  echo $_SESSION['Utilisateur']['email']?>">
+    <P for="staticEmail2" class="visually-hidden">Email</P>
+    <p type="text" readonly class="form-control-plaintext" ><?php  echo $_SESSION['currentUser']->email."\n"?></p>
   </div>
   <div class="col-auto">
     <label for="inputPassword2" class="visually-hidden">Nouvelle adresse email</label>
-    <input class="form-control" type="text" placeholder="Nouvelle adresse email" aria-label="default input example">
+    <input class="form-control" type="text" name="email" placeholder="Nouvelle adresse email" aria-label="default input example">
   </div>
   
   <div class="col-auto">
-    <label for="staticEmail2" class="visually-hidden">Nom</label>
-    <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="<?php  echo $_SESSION['Utilisateur']['nom']?>">
+    <P for="staticEmail2" class="visually-hidden">Nom</P>
+    <p type="text" readonly class="form-control-plaintext" ><?php  echo $_SESSION['currentUser']->nom."\n"?></p>
   </div>
   <div class="col-auto">
-    <label for="inputPassword2" class="visually-hidden">Nom</label>
-    <input class="form-control" type="text" placeholder="Nouveau Nom" aria-label="default input example">
-  </div>
-
-  <div class="col-auto">
-    <label for="staticEmail2" class="visually-hidden">Prenom</label>
-    <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="<?php  echo $_SESSION['Utilisateur']['prenom']?>">
-  </div>
-  <div class="col-auto">
-    <label for="inputPassword2" class="visually-hidden">prenom</label>
-    <input class="form-control" type="text" placeholder="Nouveu prenom" aria-label="default input example">
+    <label for="inputPassword2" class="visually-hidden">Nouveau Nom</label>
+    <input class="form-control" type="text" name="Nom" placeholder="Nouveau Nom" aria-label="default input example">
   </div>
 
+  <div class="col-auto">
+    <p for="staticEmail2" class="visually-hidden">Prenom</p>
+    <p type="text" readonly class="form-control-plaintext" ><?php  echo $_SESSION['currentUser']->prenom."\n"?></p>
+  </div>
+  <div class="col-auto">
+    <label for="inputPassword2" class="visually-hidden">Nouveau prenom</label>
+    <input class="form-control" type="text" name="prenom" placeholder="Nouveu prenom" aria-label="default input example">
+  </div>
+
 
   <div class="col-auto">
-    <label for="staticEmail2" class="visually-hidden">Date naissance</label>
-    <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="<?php  echo $_SESSION['Utilisateur']['date_naissance']?>">
+    <p for="staticEmail2" class="visually-hidden">Date naissance</p>
+    <p type="text" readonly class="form-control-plaintext" ><?php  echo $_SESSION['currentUser']->date_naissance."\n"?></p>
   </div>
   <div class="col-auto">
     <label for="inputPassword2" class="visually-hidden">Date naissance</label>
-    <input class="form-control" type="date" placeholder="Date naissance" aria-label="default input example">
+    <input class="form-control" type="date" name="date_naissance" placeholder="Date naissance" aria-label="default input example">
   </div>
 
 
@@ -147,6 +145,8 @@ if (!est_connecte()) {
     <button type="submit" class="btn btn-primary mb-3">Confirm identity</button>
   </div>
 </form>
+
+
       </div>
     </div>
   </div>
@@ -167,18 +167,18 @@ if (!est_connecte()) {
               <h1>Bio Graph</h1>
               <div class="">
                   <div class="bio-row">
-                      <p><span>Login :</span><?php  echo $_SESSION['Utilisateur']['login_utilisateur']?></p>
+                      <p><span>Login :</span><?php  echo $_SESSION['currentUser']->login_utilisateur?></p>
                   </div>
                   
                   <div class="bio-row">
-                      <p><span>Prenom :</span><?php  echo $_SESSION['Utilisateur']['prenom']."\n"."|"?><span> Nom :</span><?php  echo $_SESSION['Utilisateur']['prenom']?></p>
+                      <p><span>Prenom :</span><?php  echo $_SESSION['currentUser']->prenom."\n"." "?><span> Nom :</span><?php  echo $_SESSION['currentUser']->nom?></p>
                   </div>
                   
                   <div class="bio-row">
-                      <p><span>Date naissance :</span><?php  echo $_SESSION['Utilisateur']['date_naissance']?></p>
+                      <p><span>Date naissance :</span><?php  echo $_SESSION['currentUser']->date_naissance?></p>
                   </div>
                   <div class="bio-row">
-                      <p><span>Email :</span><?php  echo $_SESSION['Utilisateur']['email']?></p>
+                      <p><span>Email :</span><?php  echo $_SESSION['currentUser']->email?></p>
                   </div>
                   
               </div>
@@ -196,7 +196,7 @@ if (!est_connecte()) {
   <div class="tools">
   </div>
   <div class="card__contentDeux">
-    <h5>Historique des Jurons</h1>
+    <h5>Historique des Jurons : <?php  echo $_SESSION['currentUser']->nom." ".$_SESSION['currentUser']->prenom?></h1>
     <table class="table">
   <thead>
     <tr>
@@ -222,7 +222,35 @@ if (!est_connecte()) {
   </div>
 </div>
 </div>
-
+<form action="../Controller/executeProfilModif.php" method="post">
+    <div>
+        <label for="nom">Nom :</label>
+        <input type="text" id="nom" name="nom">
+    </div>
+    <div>
+        <label for="prenom">Prenom&nbsp;:</label>
+        <input type="text" id="prenom" name="prenom">
+    </div>
+    <div>
+        <label for="email">e-mail&nbsp;:</label>
+        <input type="email" id="email" name="email">
+    </div>
+    <div>
+        <label for="login_utilisateur">login&nbsp;:</label>
+        <input type="text" id="login_utilisateur" name="login_utilisateur">
+    </div>
+    <div>
+        <label for="password">nv pdp&nbsp;:</label>
+        <input type="password" id="password" name="password">
+    </div>
+    <div>
+        <label for="date_naissance">date naissance&nbsp;:</label>
+        <input type="date" id="date_naissance" name="date_naissance">
+    </div>
+    <div class="button">
+        <button type="submit">Envoyer le message</button>
+    </div>
+</form>
 
 <form action="../Controller/executeProfil.php">
          <button type="submit">Click me</button>
