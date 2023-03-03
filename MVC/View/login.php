@@ -1,10 +1,3 @@
-<?php session_start();
-
-require_once '../Modele/function.php'; 
-if (est_connecte()) {
-    header ('Location: ../View/accueil.php');
-} ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,11 +27,13 @@ if (est_connecte()) {
 
           </form>
 
+
      </div>
+
      <div>
-         <img src="../View/assets/img/pixou.png" alt="">
+          <img src="../View/assets/img/pixou.png" alt="">
      </div>
-     <script src="../View/assets/js/loginScript.js"></script>
+
 </body>
 </html>
 
