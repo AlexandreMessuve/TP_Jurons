@@ -35,13 +35,10 @@ if (est_connecte()) {
           </form>
 
      </div>
-
+     <div>
+         <img src="../View/assets/img/pixou.png" alt="">
+     </div>
      <script src="../View/assets/js/loginScript.js"></script>
-</body>
-</html>
-
-
-
 </body>
 </html>
 

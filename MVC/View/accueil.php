@@ -28,7 +28,7 @@
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand d-md-none d-xs-block py-3" href="#">
-                <img src="/static_files/images/logos/beer_white.png" height="40" alt="Company Logo">
+                <img src="./assets/img/boiteajurons.png" height="40" alt="Company Logo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
