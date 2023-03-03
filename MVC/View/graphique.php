@@ -15,128 +15,149 @@
 
 <body>
 
-<?php session_start(); ?>
+    <?php session_start(); ?>
 
-<?php
-require '../Modele/function.php';
-if (!est_connecte()) {
-    header('Location: login.php');
-    exit();
-}
-?>
-
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <div class="container">
-        <a class="navbar-brand d-md-none d-xs-block py-3" href="#">
-            <img src="/static_files/images/logos/beer_white.png" height="40" alt="Company Logo">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav mx-auto">
-                <li class="nav-item">
-                    <a class="nav-link mx-2 active" aria-current="page" href="index.php">Accueil</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link mx-2" href="../View/balance.php">Top Balance</a>
-                </li>
-
-
-                <li class="nav-item">
-                    <a class="nav-link mx-2" href="tableau.html">Balancer quelqu'un</a>
-                </li>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link mx-2" href="../Controller/executeProfil.php">Mon profil</a>
-                </li>
-                <li id="panelAdmin" style="display: none" class="nav-item">
-                    <a class="nav-link mx-2" href="../View/panelAdmin.html">Panel admin</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link mx-2" href="../Controller/executeLogout.php">Se déconnecter</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-
-
-
-
-
-<h1>Le graphique des Jurons</h1>
-
-
-<?php 
-$_SESSION["requete"];
-
-foreach($_SESSION["requete"] as $data){
-    $prenom[] = $data['prenom'];
-    $totalPrix[] = $data['totalPrix'];
-}
-
-
-?>
-
-
-
-
-
-<div class="graphique">
-<div>
-  <canvas id="myChart"></canvas>
-</div>
-<div>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<script>
-  const ctx = document.getElementById('myChart');
-
-  new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-      labels: <?php echo json_encode($prenom)?>,
-      datasets: [{
-        label: 'Total tarif en euros',
-        data: <?php echo json_encode($totalPrix)?>,
-        backgroundColor: [
-      'rgb(0, 0, 0)',
-      'rgb(51, 0, 102)',
-      'rgb(102, 178, 255)',
-      'rgb(0, 153, 153)',
-      'rgb(128, 128, 128)',
-      'rgb(204, 102, 0)',
-      'rgb(255, 204, 229)',
-      'rgb(128, 128, 128)',
-      'rgb(153, 153, 0)',
-      'rgb(255, 255, 204)',
-      'rgb(255, 255, 204)',
-      'rgb(255, 255, 255)',
-      'rgb(51, 0, 51)',
-      'rgb(0, 255, 255)',
-      'rgb(0, 0, 153)',
-      'rgb(255, 153, 153)',
-
-    ],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-
-      }
+    <?php
+    require '../Modele/function.php';
+    if (!est_connecte()) {
+        header('Location: login.php');
+        exit();
     }
-  });
-</script>
-</div>
-</div>
+    ?>
 
-<footer class="text-center text-white fixed-bottom" style="background-color: #673ab7">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand d-md-none d-xs-block py-3" href="#">
+                <img src="/static_files/images/logos/beer_white.png" height="40" alt="Company Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link mx-2 " aria-current="page" href="index.php">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-2 active" href="../Controller/executeGraphique.php">Le graphique des
+                            jurons</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-2" href="../View/balance.php">Top Balance</a>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a class="nav-link mx-2" href="tableau.html">Balancer quelqu'un</a>
+                    </li>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-2" href="../Controller/executeProfil.php">Mon profil</a>
+                    </li>
+                    <li id="panelAdmin" style="display: none" class="nav-item">
+                        <a class="nav-link mx-2" href="../View/panelAdmin.html">Panel admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-2" href="../Controller/executeLogout.php">Se déconnecter</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+
+
+    <h1>Le graphique des Jurons</h1>
+
+
+
+
+    <?php
+    $_SESSION["requete"];
+
+    foreach ($_SESSION["requete"] as $data) {
+        $prenom[] = $data['prenom'];
+        $totalPrix[] = $data['totalPrix'];
+    }
+
+    $_SESSION["total"];
+
+    foreach ($_SESSION["total"] as $data) {
+        $total = $data['total'];
+    }
+
+
+
+    ?>
+
+
+
+
+
+    <div class="graphique">
+        <div>
+            <canvas id="myChart"></canvas>
+        </div>
+        <div>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+            <script>
+                const ctx = document.getElementById('myChart');
+
+                new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: <?php echo json_encode($prenom) ?>,
+                        datasets: [{
+                            label: 'Total tarif en euros',
+                            data: <?php echo json_encode($totalPrix) ?>,
+                            backgroundColor: [
+                                'rgb(0, 0, 0)',
+                                'rgb(51, 0, 102)',
+                                'rgb(102, 178, 255)',
+                                'rgb(0, 153, 153)',
+                                'rgb(128, 128, 128)',
+                                'rgb(204, 102, 0)',
+                                'rgb(255, 204, 229)',
+                                'rgb(128, 128, 128)',
+                                'rgb(153, 153, 0)',
+                                'rgb(255, 255, 204)',
+                                'rgb(255, 255, 204)',
+                                'rgb(255, 255, 255)',
+                                'rgb(51, 0, 51)',
+                                'rgb(0, 255, 255)',
+                                'rgb(0, 0, 153)',
+                                'rgb(255, 153, 153)',
+                                'rgb(204, 204, 0)',
+
+                            ],
+                            borderWidth: 5
+                        }]
+                    },
+                    options: {
+                        scales: {
+
+                        }
+                    }
+                });
+            </script>
+        </div>
+        <h1>Total :
+            <?php echo json_encode($total);
+                  echo " €"?>
+        </h1>
+    </div>
+
+
+
+
+
+    <footer class="text-center text-white fixed-bottom" style="background-color: #673ab7">
         <!-- Grid container -->
         <div class="container p-4"></div>
         <!-- Grid container -->
@@ -148,7 +169,7 @@ foreach($_SESSION["requete"] as $data){
         </div>
         <!-- Copyright -->
     </footer>
- 
+
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"

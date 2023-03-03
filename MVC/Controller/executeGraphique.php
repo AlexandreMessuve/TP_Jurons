@@ -12,4 +12,13 @@ if(empty($_SESSION["requete"])) {
 else{
     header('Location: ../View/graphique.php');
 }
+
+$_SESSION['total'] = DBCommettreManager::totalTarif();
+
+if(empty($_SESSION["total"])) {
+    echo "erreur";
+}
+else{
+    header('Location: ../View/graphique.php');
+}
     ?>
