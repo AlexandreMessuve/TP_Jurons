@@ -113,7 +113,6 @@ function envoieMailPenality(string $email, string $nom, string $prenom, string $
     $headers = "From: boiteajurons@gmail.com \r\n";
     $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-    ;
 
     $message = "<html><body style='margin: 0'>";
     $message .= "<div style='text-align: center'><img height='200' width='auto' src='https://www.zupimages.net/up/23/09/g7ms.png' alt='logo boite a jurons'/></div>";
