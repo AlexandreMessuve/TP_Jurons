@@ -8,7 +8,7 @@ $password = $_POST['password'];
 
 $statut = DBLogin:: authentification($login, $password);
 
-
+//test si le status est vrai ou non
 if ($statut) {
     $_SESSION['currentUser'] = DBUtilisateurManager::selectUtilisateurByLogin($login);
     $_SESSION['users'] = DBUtilisateurManager::selectUtilisateur();

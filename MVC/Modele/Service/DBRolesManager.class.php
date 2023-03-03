@@ -27,6 +27,15 @@ class DBRolesManager {
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
+    static function selectRolesByType(int $id): object{
+        $pdo = self::PDO();
+        $sql = "SELECT * FROM roles WHERE id_roles =?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(1, $id);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_OBJ);
+    }
+
 
     //Method static qui permet d' uptdate un role dans la bdd
     static function updateRoles(string $newType, string $oldType): bool

@@ -7,7 +7,10 @@ $role = DBRolesManager::selectRoles();
 $id_role = $role[1]->id_roles;
 $type_role = $role[1]->type_roles;
 $roles = new Roles($id_role, $type_role);
+
+//test si request existe.
 if (isset($_REQUEST)) {
+    //test si request n'est pas vide.
     if (!empty($_REQUEST['nom']) && !empty($_REQUEST['prenom']) && !empty($_REQUEST['email'])
         && !empty($_REQUEST['date']) && !empty($_REQUEST['login']) && !empty($_REQUEST['password'])) {
         if (!filter_var($_REQUEST['email'], FILTER_VALIDATE_EMAIL)) {
@@ -21,6 +24,7 @@ if (isset($_REQUEST)) {
         $date = $_REQUEST['date'];
         $utilisateur = new Utilisateur($nom, $prenom, $date, $login, $email, $password, $roles);
         $status = DButilisateurManager::insertUtilisateur($utilisateur);
+        //envoie la reponse
         if ($status){
             echo 'ok';
         }else{

@@ -25,48 +25,42 @@ if (!est_connecte()) {
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand d-md-none d-xs-block py-3" href="#">
-            <img src="./assets/img/boiteajurons.png" height="40" alt="Company Logo">
-        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                    <a class="nav-link mx-2 active" aria-current="page" href="accueil.php">Accueil</a>
+                    <a class="nav-link mx-2" href="index.php">Accueil</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link mx-2" href="graphique.php">Le graphique des jurons</a>
+                    <a class="nav-link mx-2" href="../Controller/executeGraphique.php">Le graphique des jurons</a>
                 </li>
-                <form enctype="multipart/form-data" action="../Controller/executeBalance.php" method="post">
-                    <li class="nav-item">
-                        <a class="nav-link mx-2" href="../Controller/executeBalance.php">Historique des balances</a>
-                    </li>
-                </form>
+                <li class="nav-item">
+                    <a class="nav-link mx-2" href="../View/balance.php">Top Balance</a>
+                </li>
+
 
                 <li class="nav-item">
-                    <a class="nav-link mx-2" href="tableau.php">Le tableau des utilisateurs</a>
+                    <a class="nav-link mx-2" href="tableau.html">Balancer quelqu'un</a>
                 </li>
                 </li>
-                <form enctype="multipart/form-data" action="../Controller/executeBalance.php" method="post">
                 <li class="nav-item">
-                        <a class="nav-link mx-2" href="../Controller/executeProfil.php">Mon profil</a>
-                    </li>
-                </form>
-                <?php if (est_connecte()): ?>
-                    <li class="nav-item">
-                        <a class="nav-link mx-2" href="../Controller/executeLogout.php">Se déconnecter</a>
-                    </li>
-                <?php endif ?>
+                    <a class="nav-link mx-2 active" aria-current="page" href="../Controller/executeProfil.php">Mon profil</a>
+                </li>
+                <li id="panelAdmin" style="display: none" class="nav-item">
+                    <a class="nav-link mx-2" href="../View/panelAdmin.html">Panel admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-2" href="../Controller/executeLogout.php">Se déconnecter</a>
+                </li>
             </ul>
         </div>
     </div>
 </nav>
-
 
 
 
