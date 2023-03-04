@@ -7,37 +7,9 @@ function insertPenal(){
             success: function (response) {
                 if (response === 'ok') {
                     $('#insertPena').trigger('reset');
-                    $.ajax({
-                        type: 'get',
-                        url: '../Controller/executeTableau.php',
-                        success: function (response) {
-                            let rep = JSON.parse(response);
-                            let success = rep.success;
-                            if (success === 'ok') {
-                                $('#viewJurons').empty();
-                                let data = rep.data;
-                                for (let i = 0; i < data.length; i++) {
-                                    $('#viewJurons').append(
-                                        '<tr>' +
-                                        '<td>' + data[i].nom.toUpperCase() + '</td>' +
-                                        '<td>' + data[i].prenom + '</td>' +
-                                        '<td>' + data[i].petit + '</td>' +
-                                        '<td>' + data[i].gros + '</td>' +
-                                        '<td>' + data[i].rot + '</td>' +
-                                        '<td>' + data[i].geste + '</td>' +
-                                        '<td>' + data[i].retard + '</td>' +
-                                        '<td>' + data[i].total + '</td>' +
-                                        '</tr>'
-                                    )
-                                }
-                            }else {
-                                alert('Une erreur est survenue');
-                            }
+                    viewTabJurons();
 
-
-                        }
-                    })
-                }else if (response === 'erreur') {
+                }else{
                     alert('Une erreur est survenue');
                 }
             }
@@ -119,6 +91,9 @@ function viewTabCommettre(){
     $.ajax({
         type: 'get',
         url: '../Controller/executeTabCommettre.php',
+        data: {
+          action : 'load',
+        },
         success: function (response) {
             let json = JSON.parse(response);
             let success = json.success;
@@ -127,11 +102,10 @@ function viewTabCommettre(){
                 location.href= "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
             }
             if (success === 'ok'){
+                document.getElementById('retourArriere').style.display = 'none';
                 let infraction;
                 let penalitys = json.penalitys;
                 $('#viewCommettre').empty();
-                $('#viewCommettre2').empty();
-                $('#viewCommettre3').empty();
                 for (let i = 0; i < penalitys.length; i++) {
                     let id = penalitys[i].id_commettre;
                     let login = penalitys[i].login_utilisateur;
@@ -188,3 +162,220 @@ function deleteCommettre(id){
     })
 }
 
+function searchLogin(){
+ let login = $('#searchName').val();
+ $.ajax({
+     type: 'get',
+     url: '../Controller/executeTabCommettre.php',
+     data: {
+         login: login,
+         action: 'search'
+     },
+     success: function (response) {
+         let json = JSON.parse(response);
+         let success = json.success;
+         if (success === 'ok'){
+             $('#search').trigger('reset');
+             document.getElementById('retourArriere').style.display = 'block';
+             let infraction;
+             let penalitys = json.penalitys;
+             $('#viewCommettre').empty();
+             for (let i = 0; i < penalitys.length; i++) {
+                 let id = penalitys[i].id_commettre;
+                 let login = penalitys[i].login_utilisateur;
+                 let balance = penalitys[i].login_balance;
+                 let date = penalitys[i].date_infraction;
+                 if (penalitys[i].code_infraction === 'code_1'){
+                     infraction = 'Retard';
+                 }
+                 if (penalitys[i].code_infraction === 'code_2'){
+                     infraction = 'Petit juron'
+                 }
+                 if (penalitys[i].code_infraction === 'code_3'){
+                     infraction = 'Gros juron'
+                 }
+                 if (penalitys[i].code_infraction === 'code_4'){
+                     infraction = 'Rot'
+                 }
+                 if (penalitys[i].code_infraction === 'code_5'){
+                     infraction = 'Geste'
+                 }
+                 $('#viewCommettre').append(
+                     '<tr id="'+ id +'">'+
+                     '<td>'+ infraction +'</td>' +
+                     '<td>'+ login +'</td>' +
+                     '<td>'+ balance +'</td>' +
+                     '<td>'+ date +'</td>' +
+                     '<td><button class="btn btn-danger" onclick="deleteCommettre('+ id +')" >Supprimer</button></td>' +
+                     '</tr>'
+                 )
+             }
+
+         }else if (success === 'erreur'){
+             alert("Error");
+         }
+     }
+
+ })
+}
+
+function viewTabInfraction(){
+    $.ajax({
+        type: 'get',
+        url: '../Controller/executeTabInfraction.php',
+        data: {
+          action : 'load',
+        },
+        success: function (response) {
+            let json = JSON.parse(response);
+            let success = json.success;
+            if (success === 'ok'){
+                let infractions = json.infractions;
+                $('#viewInfraction').empty();
+                for (let i = 0; i < infractions.length; i++) {
+                    let code = infractions[i].code_infraction;
+                    let categorie = infractions[i].categorie_infraction;
+                    let tarif = infractions[i].tarif_infraction;
+                    $('#viewInfraction').append(
+                        '<tr id="'+ code +'">'+
+                        '<td>'+ code +'</td>'+
+                        '<td>'+ categorie +'</td>'+
+                        '<td>'+ tarif +'</td>' +
+                        '<td><button onclick="deleteInfraction('+ code +')" class="btn btn-danger">Supprimer</button></td>'+
+                        '</tr>')
+                }
+            }else if (success === 'erreur'){
+                alert("Error");
+            }
+        }
+    })
+}
+
+function insertInfraction(){
+
+    let code = $('#code').val();
+    let categorie = $('#categorie').val();
+    let tarif = $('#tarif').val();
+    $('#insertInfra').bind('submit', function(){
+        $.ajax({
+            method: 'post',
+            url: '../Controller/executeTabInfraction.php',
+            data:{
+                action: 'add',
+                code: code,
+                categorie: categorie,
+                tarif: tarif,
+            },
+            success: function (response){
+                if (response === 'ok'){
+                    $('#insertInfra').trigger('reset');
+                    viewTabInfraction();
+                }else {
+                    alert("Une erreur est survenue");
+                }
+            }
+        });
+    });
+
+}
+
+
+// creation d'un call ajax pour l'envoi des données d'un formulaire
+function inscription(){
+    $('#connexion').bind('submit', function () {
+        $.ajax({
+            type: 'post',
+            url: '../Controller/executeInscription.php',
+            data: $('form').serialize(),
+            success: function (response) {
+                if (response === 'ok') {
+                    $('#connexion').trigger('reset');
+                    location.href = '../View/login.php';
+                }else if (response === 'erreur') {
+                    alert('Formulaire incomplet !');
+                }
+            }
+        });
+        return false;
+    });
+}
+
+
+function viewTabJurons(){
+        $.ajax({
+            type: 'get',
+            url: '../Controller/executeTableau.php',
+            success: function (response) {
+                let json = JSON.parse(response);
+                let success = json.success;
+                if (success === 'ok') {
+                    $('#viewJurons').empty();
+                    let data = json.data;
+
+                    for (let i = 0; i < data.length; i++) {
+                        //envoie les données reçu par le controller dans le tableau.
+                        $('#viewJurons').append(
+                            '<tr>' +
+                            '<td>' + data[i].nom.toUpperCase() + '</td>' +
+                            '<td>' + data[i].prenom + '</td>' +
+                            '<td>' + data[i].petit + '</td>' +
+                            '<td>' + data[i].gros + '</td>' +
+                            '<td>' + data[i].rot + '</td>' +
+                            '<td>' + data[i].geste + '</td>' +
+                            '<td>' + data[i].retard + '</td>' +
+                            '<td>' + data[i].total + '</td>' +
+                            '</tr>'
+                        )
+                    }
+
+
+                }
+                if (success === 'erreur') {
+                    alert('Impossible de proceder aux changements');
+                }
+                if (success === 'no users found'){
+                    alert("Il ni a actuellement pas d'infraction");
+                }
+
+            }
+        });
+}
+
+function insertJuron(){
+
+    $.ajax({
+        method: 'post',
+        url: '../Controller/executeAdminLoad.php',
+        success: function (response) {
+            let json = JSON.parse(response);
+            let users = json.users;
+            for (let i = 0; i < users.length; i++) {
+                let nom = users[i].nom.toUpperCase();
+                let prenom = users[i].prenom.charAt(0).toUpperCase() + users[i].prenom.slice(1);
+
+                $('#select').append(
+                    '<option value="' + users[i].login_utilisateur + '">' + nom +
+                    ' ' + prenom + '</option>');
+            }
+            //Récupère les données de tout les utilisateur pour les mettre dans le formulaire d'infraction.
+        }
+    });
+
+}
+
+function deleteInfraction(code){
+    $.ajax({
+        method: 'post',
+        url: '../Controller/executeDeleteInfraction.php',
+        data:{
+            code: code,
+        },
+        success: function (response){
+            if (response === 'ok'){
+                document.getElementById(code).remove();
+            }if (response === 'erreur'){
+                alert("Une erreur est survenue");
+            }
+        }
+    });
+}

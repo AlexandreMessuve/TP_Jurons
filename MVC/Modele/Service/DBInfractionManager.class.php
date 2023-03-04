@@ -39,14 +39,13 @@ class DBInfractionManager {
     }
     // Methode static qui permet de supprimer une infraction de la bdd
 
-    static function deleteInfraction(Infraction $infraction): bool
+    static function deleteInfraction(string $codeInfraction): bool
     {
 
-        $codeInfraction = $infraction->getCodeInfraction();
         $pdo = self::PDO();
-        $sql = "DELETE FROM infraction WHERE code_infraction =$codeInfraction";
+        $sql = "DELETE FROM infraction WHERE code_infraction =?";
         $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(1, $login);
+        $stmt->bindParam(1, $codeInfraction);
         return  $stmt->execute();
     }
 
@@ -55,7 +54,8 @@ class DBInfractionManager {
         {
             $pdo = self::PDO();
             $sql = "SELECT * FROM infraction";
-            $stmt = $pdo->query($sql);
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_OBJ);
         }
     //Method static qui permet de selectionner les infractions de la bdd par code 

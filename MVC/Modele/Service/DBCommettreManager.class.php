@@ -42,6 +42,16 @@ class DBCommettreManager {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    static function selectPenalitysByLogin_Balance(string $login_balance): array
+    {
+        $pdo = self::PDO();
+        $sql = "SELECT * FROM commettre WHERE login_balance = ? ORDER BY date_infraction DESC";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(1, $login_balance);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     static function selectBalance(): array
     {
         $pdo = self::PDO();

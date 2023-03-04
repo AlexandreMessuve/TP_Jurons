@@ -11,7 +11,7 @@
     <title>Document</title>
 </head>
 
-<body onload="viewTabCommettre()">
+<body onload="viewTabCommettre(); viewTabInfraction(); insertInfraction();">
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
@@ -50,13 +50,24 @@
         </div>
     </div>
 </nav>
-<div class="contenu">
-    <div class="headTab">
-        <div class="titre">
-            <h3>Historique Balance :</h3>
-        </div>
+<div class="contenuTab">
+    <div class="contenuTab">
+        <a id="retourArriere" style="display: none" onclick="viewTabCommettre()">
+            <img height="10px" src="assets/img/fleche-fine-contour-vers-la-gauche.png" alt="fleche vers la gauche">
+        </a>
+        <h3>Historique Balance :</h3>
+        <form id="search">
+            <input id="searchName" type="search" name="search" placeholder="Qui voulez-vous rechercher ?">
+            <button type="button" onclick="searchLogin()">Rechercher</button>
+        </form>
     </div>
+    <div class="titre2">
+        <h3>Ajoutez/Supprimer infraction :</h3>
+    </div>
+</div>
+<div class="contenuTab">
     <div class="tableau">
+
         <table id="viewTab" class="table table-striped">
             <thead class="black white-text">
                 <tr>
@@ -71,7 +82,39 @@
             </tbody>
         </table>
     </div>
+    <div class="tableau2">
 
+        <table id="viewTab2" class="table table-striped">
+            <thead class="black white-text">
+            <tr>
+                <th>Code infraction</th>
+                <th>Categorie infraction</th>
+                <th>Tarif de l'infraction</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+                <form id="insertInfra">
+                    <tr>
+                        <td>
+                            <input type="text" name="code" id="code" class="textInput" placeholder="code infraction">
+                        </td>
+                        <td>
+                            <input type="text" name="categorie" id="categorie" class="textInput" placeholder="categorie infraction">
+                        </td>
+                        <td>
+                            <input type="text" name="tarif" id="tarif" class="textInput" placeholder="tarif de l'infraction">
+                        </td>
+                        <td>
+                            <input type="submit" class="btn btn-primary" value="valider">
+                        </td>
+                    </tr>
+                </form>
+            </tbody>
+            <tbody id="viewInfraction">
+            </tbody>
+        </table>
+    </div>
 </div>
 
 
