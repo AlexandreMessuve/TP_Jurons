@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 27 fév. 2023 à 15:53
+-- Généré le : dim. 05 mars 2023 à 17:46
 -- Version du serveur : 10.4.27-MariaDB
--- Version de PHP : 8.2.0
+-- Version de PHP : 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,7 +32,7 @@ CREATE TABLE `commettre` (
   `code_infraction` varchar(50) NOT NULL,
   `login_utilisateur` varchar(50) NOT NULL,
   `login_balance` varchar(50) NOT NULL,
-  `date_infraction` datetime NOT NULL
+  `date_infraction` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -53,10 +53,10 @@ CREATE TABLE `infraction` (
 
 INSERT INTO `infraction` (`code_infraction`, `categorie_infraction`, `tarif_infraction`) VALUES
 ('code_1', 'retard', 0.1),
-('code_2', 'petite_insulte', 0.1),
-('code_3', 'grosse_insulte', 0.3),
+('code_2', 'petite insulte', 0.1),
+('code_3', 'grosse insulte', 0.3),
 ('code_4', 'rot', 0.5),
-('code_5', 'geste', 0.7);
+('code_5', 'geste deplacé', 0.7);
 
 -- --------------------------------------------------------
 
@@ -86,19 +86,13 @@ INSERT INTO `roles` (`id_roles`, `type_roles`) VALUES
 CREATE TABLE `utilisateur` (
   `login_utilisateur` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `password` varchar(255) NOT NULL,
+  `password` varchar(100) NOT NULL,
   `nom` varchar(50) NOT NULL,
   `prenom` varchar(50) NOT NULL,
   `date_naissance` date NOT NULL,
+  `photo` varchar(255) NOT NULL DEFAULT '../Users/photodefault/defaut.png',
   `id_roles` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `utilisateur`
---
-
-INSERT INTO `utilisateur` (`login_utilisateur`, `email`, `password`, `nom`, `prenom`, `date_naissance`, `id_roles`) VALUES
-('admin', 'alex@gmail.com', '$2y$10$s4xwC6u.6oAj026SXLsxlOsaDlmYN0hpd5ghXn8HVRY/QEgcXvCdu', 'messuve', 'alexandre', '1997-04-16', 2);
 
 --
 -- Index pour les tables déchargées
@@ -109,8 +103,8 @@ INSERT INTO `utilisateur` (`login_utilisateur`, `email`, `password`, `nom`, `pre
 --
 ALTER TABLE `commettre`
   ADD PRIMARY KEY (`id_commettre`),
-  ADD KEY `commettre_utilisateur` (`login_utilisateur`) USING BTREE,
-  ADD KEY `commettre_infraction` (`code_infraction`) USING BTREE;
+  ADD KEY `commettre_utilisateur0_FK` (`login_utilisateur`),
+  ADD KEY `commettre_infraction` (`code_infraction`);
 
 --
 -- Index pour la table `infraction`
@@ -128,7 +122,7 @@ ALTER TABLE `roles`
 -- Index pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  ADD PRIMARY KEY (`login_utilisateur`),
+  ADD PRIMARY KEY (`login_utilisateur`,`email`) USING BTREE,
   ADD KEY `utilisateur_Roles_FK` (`id_roles`);
 
 --
@@ -139,7 +133,7 @@ ALTER TABLE `utilisateur`
 -- AUTO_INCREMENT pour la table `commettre`
 --
 ALTER TABLE `commettre`
-  MODIFY `id_commettre` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_commettre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- AUTO_INCREMENT pour la table `roles`
@@ -155,8 +149,8 @@ ALTER TABLE `roles`
 -- Contraintes pour la table `commettre`
 --
 ALTER TABLE `commettre`
-  ADD CONSTRAINT `commettre_infraction_FK` FOREIGN KEY (`code_infraction`) REFERENCES `infraction` (`code_infraction`),
-  ADD CONSTRAINT `commettre_utilisateur0_FK` FOREIGN KEY (`login_utilisateur`) REFERENCES `utilisateur` (`login_utilisateur`);
+  ADD CONSTRAINT `commettre_infraction` FOREIGN KEY (`code_infraction`) REFERENCES `infraction` (`code_infraction`),
+  ADD CONSTRAINT `commettre_utilisateur` FOREIGN KEY (`login_utilisateur`) REFERENCES `utilisateur` (`login_utilisateur`);
 
 --
 -- Contraintes pour la table `utilisateur`
