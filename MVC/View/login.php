@@ -33,7 +33,11 @@
      <div>
           <img src="../View/assets/img/pixou.png" alt="">
      </div>
-
+     <script
+             src="https://code.jquery.com/jquery-3.6.3.min.js"
+             integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+             crossorigin="anonymous"></script>
+     <script type="text/javascript" src="assets/js/functions.js" onload="adminLoad()"></script>
 </body>
 </html>
 
