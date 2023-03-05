@@ -13,7 +13,7 @@
 
 </head>
 
-<body>
+<body onload="adminLoad()">
 
     <?php session_start(); ?>
 
@@ -65,17 +65,6 @@
     </nav>
 
 
-
-
-
-<div class="container">
-    <h1>Le graphique des Jurons</h1>
-</div>
-
-
-
-
-
     <?php
     $_SESSION["requete"];
 
@@ -89,6 +78,19 @@
 
 
 
+    <?php if (empty($_SESSION["requete"])): ?>
+        <div class="container">
+            <h1>Le graphique des Jurons est momentanément vide</h1>
+        </div>
+    <?php else: ?>
+        <div class="container">
+            <h1>Le graphique des Jurons</h1>
+        </div>
+    <?php endif ?>
+
+
+
+
 
 
     <div class="graphique">
@@ -96,7 +98,6 @@
             <canvas id="myChart"></canvas>
         </div>
         <div>
-            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
             <script>
                 const ctx = document.getElementById('myChart');
@@ -139,10 +140,14 @@
                 });
             </script>
         </div>
-        <h1>Total :
-            <?php echo $total;
-                  echo " €"?>
-        </h1>
+        <?php if (empty($_SESSION["total"])): ?>
+            <h1>Aucun montant n'est à régler pour le moment</h1>
+        <?php else: ?>
+            <h1>Total :
+                <?php echo $total;
+                echo " €" ?>
+            </h1>
+        <?php endif ?>
     </div>
 
 
@@ -163,9 +168,20 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+<<<<<<< HEAD
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+=======
             integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
             crossorigin="anonymous"></script>
+    <script
+            src="https://code.jquery.com/jquery-3.6.3.min.js"
+            integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+            crossorigin="anonymous"></script>
+    <script src="../View/assets/js/functions.js"></script>
 
 </body>
 
+>>>>>>> a8e659f0bf5bd8100ab7ebec778663bd6f4ae84c
 
+</body>

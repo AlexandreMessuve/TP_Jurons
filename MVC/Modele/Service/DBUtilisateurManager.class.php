@@ -98,5 +98,14 @@ class  DButilisateurManager
         return $stmt->execute();
     }
 
+    static function changePassword(string $password, string $login): bool{
+        $pdo = self::PDO();
+        $sql = "UPDATE `utilisateur` SET `password` =? WHERE login_utilisateur =?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(1, $password);
+        $stmt->bindParam(2, $login);
+        return $stmt->execute();
+    }
+
 }
 

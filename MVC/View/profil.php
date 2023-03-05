@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../View/assets/css/ProfilStyle.css">
     <title>Document</title>
 </head>
-<body>
+<body onload="adminLoad()">
 
 
 <?php session_start() ?>
@@ -88,7 +88,7 @@ if (!est_connecte()) {
                                 </div>
 
                                 <div class="modal-body">
-                                    <form  method="post" action="../Controller/executeProfilModif.php"   class="row g-3">
+                                    <form enctype="multipart/form-data"  method="post" action="../Controller/executeProfilModif.php"   class="row g-3">
                                         <div class="col-auto">
                                             <P for="staticEmail2" class="visually-hidden">Login</P>
                                             <p type="text" readonly class="form-control-plaintext"><?php  echo $_SESSION['currentUser']->login_utilisateur?></p>
@@ -249,7 +249,13 @@ if (!est_connecte()) {
 
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<script
+        src="https://code.jquery.com/jquery-3.6.3.min.js"
+        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+        crossorigin="anonymous"></script>
+<script src="../View/assets/js/functions.js"></script>
 
 </body>
 </html>
