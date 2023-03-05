@@ -13,7 +13,7 @@
 
 </head>
 
-<body onload="adminLoad()">
+<body>
 
     <?php session_start(); ?>
 
@@ -65,6 +65,17 @@
     </nav>
 
 
+
+
+
+<div class="container">
+    <h1>Le graphique des Jurons</h1>
+</div>
+
+
+
+
+
     <?php
     $_SESSION["requete"];
 
@@ -78,19 +89,6 @@
 
 
 
-    <?php if (empty($_SESSION["requete"])): ?>
-        <div class="container">
-            <h1>Le graphique des Jurons est momentanément vide</h1>
-        </div>
-    <?php else: ?>
-        <div class="container">
-            <h1>Le graphique des Jurons</h1>
-        </div>
-    <?php endif ?>
-
-
-
-
 
 
     <div class="graphique">
@@ -98,6 +96,7 @@
             <canvas id="myChart"></canvas>
         </div>
         <div>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
             <script>
                 const ctx = document.getElementById('myChart');
@@ -117,13 +116,13 @@
                                 'rgb(128, 128, 128)',
                                 'rgb(204, 102, 0)',
                                 'rgb(255, 204, 229)',
-                                'rgb(204, 204, 255)',
+                                'rgb(128, 128, 128)',
                                 'rgb(153, 153, 0)',
                                 'rgb(255, 255, 204)',
-                                'rgb(178, 255, 102)',
-                                'rgb(204, 229, 255)',
+                                'rgb(255, 255, 204)',
+                                'rgb(255, 255, 255)',
                                 'rgb(51, 0, 51)',
-                                'rgb(0, 102, 204)',
+                                'rgb(0, 255, 255)',
                                 'rgb(0, 0, 153)',
                                 'rgb(255, 153, 153)',
                                 'rgb(204, 204, 0)',
@@ -140,14 +139,10 @@
                 });
             </script>
         </div>
-        <?php if (empty($_SESSION["total"])): ?>
-            <h1>Aucun montant n'est à régler pour le moment</h1>
-        <?php else: ?>
-            <h1>Total :
-                <?php echo $total;
-                echo " €" ?>
-            </h1>
-        <?php endif ?>
+        <h1>Total :
+            <?php echo $total;
+                  echo " €"?>
+        </h1>
     </div>
 
 
@@ -168,17 +163,9 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-
-        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-        crossorigin="anonymous"></script>
-    <script
-            src="https://code.jquery.com/jquery-3.6.3.min.js"
-            integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
             crossorigin="anonymous"></script>
-    <script src="../View/assets/js/functions.js"></script>
 
 </body>
 
 
-
-</body>

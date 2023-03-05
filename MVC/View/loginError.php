@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,7 +27,7 @@
 
           <button class="btn"> Login </button>
                <p class="text"> Pas de compte ? <a href="../View/inscription.html"> <t class="hoverText">Register</t> </a> </p>
-               <p class="text"> Mot de passe oublié ? <a href="../View/motDePasseOublie.php"> <t class="hoverText"> Clique ici </t> </a> </p>
+            <p>Mot de passe ou login incorrect</p>
           </form>
 
 
