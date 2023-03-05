@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +7,7 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <link rel="stylesheet" href="../View/assets/css/styleLogin.css">
      <title>Login</title>
-
+     
 </head>
 <body>
 
@@ -26,7 +27,7 @@
 
           <button class="btn"> Login </button>
                <p class="text"> Pas de compte ? <a href="../View/inscription.html"> <t class="hoverText">Register</t> </a> </p>
-               <p class="text"> Mot de passe oublié ? <a href="../View/motDePasseOublie.php"> <t class="hoverText"> Clique ici </t> </a> </p>
+            <p>Mot de passe ou login incorrect</p>
           </form>
 
 
@@ -35,11 +36,9 @@
      <div>
           <img src="../View/assets/img/pixou.png" alt="">
      </div>
-     <script
-             src="https://code.jquery.com/jquery-3.6.3.min.js"
-             integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
-             crossorigin="anonymous"></script>
-     <script type="text/javascript" src="assets/js/functions.js" onload="adminLoad()"></script>
+
+
+
 </body>
 </html>
 

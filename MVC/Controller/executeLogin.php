@@ -15,9 +15,14 @@ if ($statut) {
     $_SESSION['connecte'] = 1;
     header ('Location: ../View/index.php');
 } else {
-    echo "error";
-}
+    header ('Location: ../View/loginError.php');
+} 
 
 if (est_connecte()) {
     header ('Location: ../View/index.php');
-  }
+  } 
+
+
+
+
+?>
