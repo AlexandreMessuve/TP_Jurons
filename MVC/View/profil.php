@@ -231,10 +231,6 @@ if (!est_connecte()) {
         <input type="email" id="email" name="email">
     </div>
     <div>
-        <label for="login_utilisateur">login&nbsp;:</label>
-        <input type="text" id="login_utilisateur" name="login_utilisateur">
-    </div>
-    <div>
         <label for="password">nv pdp&nbsp;:</label>
         <input type="password" id="password" name="password">
     </div>
