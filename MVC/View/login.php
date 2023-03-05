@@ -33,7 +33,7 @@
      </div>
 
      <div>
-          <img src="../View/assets/img/pixou.png" alt="">
+          <img src="../View/assets/img/pixou.png" alt="" class="imgLogin">
      </div>
      <script
              src="https://code.jquery.com/jquery-3.6.3.min.js"

@@ -18,7 +18,7 @@
             <form method="post" class="bodyForm" action="../Controller/executeMdpOublie.php">
 
                 <h1 class="titreInscription"> <a href="./login.php" class="imgFleche"><img src="./assets/Img/fleche-fine-contour-vers-la-gauche.png" alt="" width="20px"> </a>Inscription </h1>
-                <p class="textMDP"> Nous allons vous envoyer un nouveau mot de passe par mail, </br> nous vous conseillons de le changer ensuite dans votre panel profil. </p>
+                <p class="textMDP"> Nous allons vous envoyer un nouveau mot de passe par mail </br> Nous vous conseillons de le changer ensuite dans votre panel profil. </p>
                
                 <div class="input-group">
                     <input type="text" name="login" autocomplete="off" class="input" required />
