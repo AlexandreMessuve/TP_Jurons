@@ -88,7 +88,7 @@ if (!est_connecte()) {
 
 
 
-<footer class="text-center text-white fixed-bottom" style="background-color: #673ab7">
+<footer class="text-center text-white" style="background-color: #673ab7">
     <!-- Grid container -->
     <div class="container p-4"></div>
     <!-- Grid container -->

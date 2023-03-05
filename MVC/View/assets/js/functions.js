@@ -48,6 +48,11 @@ function viewTabBalance(action){
             if(success === 'ok'){
                 $('#balance').empty();
                 if (newAction === 'allTime'){
+                    $('#titreBalance').empty();
+                    $('#titreBalance').append(
+                        'Top des balances All Time');
+                    document.getElementById('btnBalanceAll').style.display = 'none';
+                    document.getElementById('btnBalanceWeek').style.display = 'block';
                     let balancesAllTime = json.allTime;
                     for(let i = 0; i < balancesAllTime.length; i++){
                         let nom = balancesAllTime[i].nom.toUpperCase();
@@ -65,6 +70,11 @@ function viewTabBalance(action){
                     }
                 }
                 if (newAction === 'week'){
+                    $('#titreBalance').empty();
+                    $('#titreBalance').append(
+                        'Top des balances de la semaine');
+                    document.getElementById('btnBalanceAll').style.display = 'block';
+                    document.getElementById('btnBalanceWeek').style.display = 'none';
                     let balancesWeek = json.week;
                     for(let i = 0; i < balancesWeek.length; i++){
                         let nom = balancesWeek[i].nom.toUpperCase();
@@ -128,11 +138,11 @@ function viewTabCommettre(){
                     }
                         $('#viewCommettre').append(
                             '<tr id="'+ id +'">'+
-                            '<td>'+ infraction +'</td>' +
-                            '<td>'+ login +'</td>' +
-                            '<td>'+ balance +'</td>' +
-                            '<td>'+ date +'</td>' +
-                            '<td><button class="btn btn-danger" onclick="deleteCommettre('+ id +')" >Supprimer</button></td>' +
+                            '<td data-label="Infraction">'+ infraction +'</td>' +
+                            '<td data-label="Login">'+ login +'</td>' +
+                            '<td data-label="Balance">'+ balance +'</td>' +
+                            '<td data-label="Date">'+ date +'</td>' +
+                            '<td data-label="Action"><button class="btn btn-danger bouton" onclick="deleteCommettre('+ id +')" >Supprimer</button></td>' +
                             '</tr>'
                         )
                 }
@@ -163,60 +173,62 @@ function deleteCommettre(id){
 }
 
 function searchLogin(){
- let login = $('#searchName').val();
- $.ajax({
-     type: 'get',
-     url: '../Controller/executeTabCommettre.php',
-     data: {
-         login: login,
-         action: 'search'
-     },
-     success: function (response) {
-         let json = JSON.parse(response);
-         let success = json.success;
-         if (success === 'ok'){
-             $('#search').trigger('reset');
-             document.getElementById('retourArriere').style.display = 'block';
-             let infraction;
-             let penalitys = json.penalitys;
-             $('#viewCommettre').empty();
-             for (let i = 0; i < penalitys.length; i++) {
-                 let id = penalitys[i].id_commettre;
-                 let login = penalitys[i].login_utilisateur;
-                 let balance = penalitys[i].login_balance;
-                 let date = penalitys[i].date_infraction;
-                 if (penalitys[i].code_infraction === 'code_1'){
-                     infraction = 'Retard';
-                 }
-                 if (penalitys[i].code_infraction === 'code_2'){
-                     infraction = 'Petit juron'
-                 }
-                 if (penalitys[i].code_infraction === 'code_3'){
-                     infraction = 'Gros juron'
-                 }
-                 if (penalitys[i].code_infraction === 'code_4'){
-                     infraction = 'Rot'
-                 }
-                 if (penalitys[i].code_infraction === 'code_5'){
-                     infraction = 'Geste'
-                 }
-                 $('#viewCommettre').append(
-                     '<tr id="'+ id +'">'+
-                     '<td>'+ infraction +'</td>' +
-                     '<td>'+ login +'</td>' +
-                     '<td>'+ balance +'</td>' +
-                     '<td>'+ date +'</td>' +
-                     '<td><button class="btn btn-danger" onclick="deleteCommettre('+ id +')" >Supprimer</button></td>' +
-                     '</tr>'
-                 )
-             }
+    let login = $('#searchName').val();
+        $.ajax({
+            type: 'post',
+            url: '../Controller/executeTabCommettre.php',
+            data: {
+                action: 'search',
+                login: login
+            },
+            success: function (response) {
+                let json = JSON.parse(response);
+                let success = json.success;
+                if (success === 'ok'){
+                    $('#search').trigger('reset');
+                    document.getElementById('retourArriere').style.display = 'block';
+                    let infraction;
+                    let penalitys = json.penalitys;
+                    $('#viewCommettre').empty();
+                    for (let i = 0; i < penalitys.length; i++) {
+                        let id = penalitys[i].id_commettre;
+                        let login = penalitys[i].login_utilisateur;
+                        let balance = penalitys[i].login_balance;
+                        let date = penalitys[i].date_infraction;
+                        if (penalitys[i].code_infraction === 'code_1'){
+                            infraction = 'Retard';
+                        }
+                        if (penalitys[i].code_infraction === 'code_2'){
+                            infraction = 'Petit juron'
+                        }
+                        if (penalitys[i].code_infraction === 'code_3'){
+                            infraction = 'Gros juron'
+                        }
+                        if (penalitys[i].code_infraction === 'code_4'){
+                            infraction = 'Rot'
+                        }
+                        if (penalitys[i].code_infraction === 'code_5'){
+                            infraction = 'Geste'
+                        }
+                        $('#viewCommettre').append(
+                            '<tr id="'+ id +'">'+
+                            '<td data-label="Infraction">'+ infraction +'</td>' +
+                            '<td data-label="Login">'+ login +'</td>' +
+                            '<td data-label="Balance">'+ balance +'</td>' +
+                            '<td data-label="Date">'+ date +'</td>' +
+                            '<td data-label="Action"><button class="btn btn-danger bouton" onclick="deleteCommettre('+ id +')" >Supprimer</button></td>' +
+                            '</tr>'
+                        )
+                    }
 
-         }else if (success === 'erreur'){
-             alert("Error");
-         }
-     }
+                }else if (success === 'erreur'){
+                    alert("Error");
+                }
+            }
 
- })
+        });
+
+
 }
 
 function viewTabInfraction(){
@@ -238,10 +250,10 @@ function viewTabInfraction(){
                     let tarif = infractions[i].tarif_infraction;
                     $('#viewInfraction').append(
                         '<tr id="'+ code +'">'+
-                        '<td>'+ code +'</td>'+
-                        '<td>'+ categorie +'</td>'+
-                        '<td>'+ tarif +'</td>' +
-                        '<td><button onclick="deleteInfraction('+ code +')" class="btn btn-danger">Supprimer</button></td>'+
+                        '<td class="formInfra" data-label="Code">'+ code +'</td>'+
+                        '<td class="formInfra" data-label="Categorie">'+ categorie +'</td>'+
+                        '<td class="formInfra" data-label="Tarif">'+ tarif +'</td>' +
+                        '<td class="formInfra" data-label="Action"><button onclick="deleteInfraction('+ code +')" class="btn btn-danger bouton">Supprimer</button></td>'+
                         '</tr>')
                 }
             }else if (success === 'erreur'){
@@ -256,7 +268,6 @@ function insertInfraction(){
     let code = $('#code').val();
     let categorie = $('#categorie').val();
     let tarif = $('#tarif').val();
-    $('#insertInfra').bind('submit', function(){
         $.ajax({
             method: 'post',
             url: '../Controller/executeTabInfraction.php',
@@ -275,7 +286,6 @@ function insertInfraction(){
                 }
             }
         });
-    });
 
 }
 
@@ -378,4 +388,41 @@ function deleteInfraction(code){
             }
         }
     });
+}
+
+function loadUsersFormAdmin(){
+    $.ajax({
+        method: 'post',
+        url: '../Controller/executeAdminLoad.php',
+        success: function (response) {
+            let json = JSON.parse(response);
+            let users = json.users;
+            for (let i = 0; i < users.length; i++) {
+                let nom = users[i].nom.toUpperCase();
+                let prenom = users[i].prenom.charAt(0).toUpperCase() + users[i].prenom.slice(1);
+                $('#selectUser').append('<option value="' + users[i].login_utilisateur + '">' + nom + ' ' + prenom + '</option>');
+            }
+        }
+    });
+}
+
+function insertAdmin() {
+    let login = $('#selectUser').val();
+    let role = $('#selectRole').val();
+        $.ajax({
+            url: '../Controller/executeChangeRole.php',
+            method : 'post',
+            data : {
+                login: login,
+                role: role,
+            },
+            success: function (response) {
+                if (response === 'ok') {
+                    $('#insertAdmin').trigger('reset');
+                    alert('Administrateur ajouté avec succès');
+                }else {
+                    alert('Une erreur est survenue');
+                }
+            }
+        });
 }

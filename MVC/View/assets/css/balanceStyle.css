@@ -22,10 +22,13 @@ footer {
     gap: 0px 0px;
     grid-auto-flow: row;
     grid-template-areas:
+    "titre titre titre"
     ". . ."
-    ". . ."
-    "titre titre titre";
+    ".bouton.";
     grid-area: headTab;
 }
 
 .titre { grid-area: titre; }
+.bouton{
+    grid-area: bouton!important;
+}

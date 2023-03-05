@@ -50,12 +50,17 @@
     </div>
 </nav>
 
-<div class="contenu">
+<div class="contenu container">
     <div class="headTab">
         <div class="titre">
-            <button id="btnBalanceWeek" type="button" onclick="viewTabBalance('week')">Top de la semaine: </button>
+            <h1 id="titreBalance" class="text-center">Top All time des balances : </h1>
+        </div>
+        <div class="bouton">
+            <button class="btn btn-primary" id="btnBalanceWeek" type="button" onclick="viewTabBalance('week')">Afficher top de la semaine</button>
+            <button class="btn btn-primary" id="btnBalanceAll" type="button" onclick="viewTabBalance('allTime')">Afficher le top AllTime</button>
         </div>
     </div>
+
     <div class="tableau">
         <table id="allTime" class="table table-striped">
             <thead class="black white-text" style="background-color: #673ab7">

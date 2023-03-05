@@ -27,9 +27,6 @@
 
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand d-md-none d-xs-block py-3" href="#">
-                <img src="/static_files/images/logos/beer_white.png" height="40" alt="Company Logo">
-            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -71,8 +68,10 @@
 
 
 
-
+<div class="container">
     <h1>Le graphique des Jurons</h1>
+</div>
+
 
 
 
@@ -150,7 +149,7 @@
 
 
 
-    <footer class="text-center text-white fixed-bottom" style="background-color: #673ab7">
+    <footer class="text-center text-white" style="background-color: #673ab7">
         <!-- Grid container -->
         <div class="container p-4"></div>
         <!-- Grid container -->
@@ -163,8 +162,10 @@
         <!-- Copyright -->
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"></script>
+
 </body>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-    crossorigin="anonymous"></script>
+

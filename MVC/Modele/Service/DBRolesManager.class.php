@@ -12,7 +12,7 @@ class DBRolesManager {
     static function insertRoles(string $type): bool
     {
         $pdo = self::PDO();
-        $sql = "INSERT INTO roles (type) values (?)";
+        $sql = "INSERT INTO roles (type_roles) values (?)";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(1, $type);
         return $stmt->execute();
@@ -41,9 +41,9 @@ class DBRolesManager {
     static function updateRoles(string $newType, string $oldType): bool
     {
         $pdo = self::PDO();
-        $sql = "UPDATE roles SET type = ? WHERE type= ?";
+        $sql = "UPDATE roles SET type_roles = ? WHERE type_roles= ?";
         $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(1, $newtype);
+        $stmt->bindParam(1, $newType);
         $stmt->bindParam(2, $oldType);
         return $stmt->execute();
     }
@@ -53,7 +53,7 @@ class DBRolesManager {
     static function deleteRoles(string $type): bool
     {
         $pdo = self::PDO();
-        $sql = "DELETE FROM roles WHERE type = ?";
+        $sql = "DELETE FROM roles WHERE type_roles = ?";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(1, $type);
         return $stmt->execute();

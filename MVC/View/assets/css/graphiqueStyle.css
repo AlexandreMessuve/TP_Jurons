@@ -6,16 +6,33 @@
     .navbar {
       padding: 0
     }
+
   }
 
+@media screen and (max-width:777px){
+    footer {
+        position: sticky;
+        bottom: 0;
+    }
+    .graphique {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40vh;
+    }
 
+}
 
-  .graphique {
+.graphique {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 80vh;
+    height: 76.8vh;
 }
+
+
+
+
 
 #myChart {
     height: 600px !important;

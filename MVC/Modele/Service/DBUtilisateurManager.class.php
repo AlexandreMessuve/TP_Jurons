@@ -43,8 +43,8 @@ class  DButilisateurManager
         $password = $utilisateur->getPassword();
         $id_role = $utilisateur->getRoles()->getIdRole();
         $pdo = self::PDO();
-        $sql = "UPDATE `utilisateur` SET `nom` =?, `prenom` =?, `date_de_naissance` =?,
-                         `password` =?, `email`, `id_role` =? WHERE login_utilisateur =?";
+        $sql = "UPDATE `utilisateur` SET `nom` =?, `prenom` =?, `date_naissance` =?,
+                         `password` =?, `email`=?, `id_roles` =? WHERE login_utilisateur =?";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(1, $nom);
         $stmt->bindParam(2, $prenom);
@@ -86,7 +86,17 @@ class  DButilisateurManager
         $stmt->bindParam(1, $login);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_OBJ);
-        }
+    }
+
+
+    static function updatePhoto(string $filepath , string $login): bool{
+        $pdo = self::PDO();
+        $sql = "UPDATE `utilisateur` SET `photo` =? WHERE login_utilisateur =?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(1, $filepath);
+        $stmt->bindParam(2, $login);
+        return $stmt->execute();
+    }
 
 }
 
