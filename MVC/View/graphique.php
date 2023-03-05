@@ -117,13 +117,13 @@
                                 'rgb(128, 128, 128)',
                                 'rgb(204, 102, 0)',
                                 'rgb(255, 204, 229)',
-                                'rgb(128, 128, 128)',
+                                'rgb(204, 204, 255)',
                                 'rgb(153, 153, 0)',
                                 'rgb(255, 255, 204)',
-                                'rgb(255, 255, 204)',
-                                'rgb(255, 255, 255)',
+                                'rgb(178, 255, 102)',
+                                'rgb(204, 229, 255)',
                                 'rgb(51, 0, 51)',
-                                'rgb(0, 255, 255)',
+                                'rgb(0, 102, 204)',
                                 'rgb(0, 0, 153)',
                                 'rgb(255, 153, 153)',
                                 'rgb(204, 204, 0)',
@@ -168,12 +168,9 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-<<<<<<< HEAD
+
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>
-=======
-            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-            crossorigin="anonymous"></script>
     <script
             src="https://code.jquery.com/jquery-3.6.3.min.js"
             integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
@@ -182,6 +179,6 @@
 
 </body>
 
->>>>>>> a8e659f0bf5bd8100ab7ebec778663bd6f4ae84c
+
 
 </body>
