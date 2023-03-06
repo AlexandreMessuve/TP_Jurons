@@ -88,6 +88,7 @@ class  DButilisateurManager
     }
 
 
+    // method static pour mettre sa photo 
     static function updatePhoto(string $filepath , string $login): bool{
         $pdo = self::PDO();
         $sql = "UPDATE `utilisateur` SET `photo` =? WHERE login_utilisateur =?";
@@ -97,6 +98,7 @@ class  DButilisateurManager
         return $stmt->execute();
     }
 
+    // method static pour changer son mot de passe 
     static function changePassword(string $password, string $login): bool{
         $pdo = self::PDO();
         $sql = "UPDATE `utilisateur` SET `password` =? WHERE login_utilisateur =?";

@@ -2,6 +2,8 @@
 
 include '../Modele/Service/DBUtilisateurManager.class.php';
 
+// permet de changer le mot de passe et l'envoyer par mail à l'utilisateur 
+
 if (isset($_POST['email'])) 
 {
 
