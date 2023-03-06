@@ -1,3 +1,6 @@
+
+
+
 @media screen and (min-width:777px){
     .nav-link {
       padding:18px 0;
@@ -43,3 +46,8 @@ h1 {
     text-align: center;
 }
 
+footer {
+    position: fixed; bottom: 0;
+    width : 100%;
+    
+}
