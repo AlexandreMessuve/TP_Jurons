@@ -7,7 +7,7 @@ session_start();
 $_SESSION["requete"] = DBCommettreManager::totalTarifByLogin();
 
 if(empty($_SESSION["requete"])) {
-    echo "erreur";
+    header('Location: ../View/graphique.php');
 }
 else{
     header('Location: ../View/graphique.php');
@@ -16,7 +16,7 @@ else{
 $_SESSION['total'] = DBCommettreManager::totalTarif();
 
 if(empty($_SESSION["total"])) {
-    echo "erreur";
+    header('Location: ../View/graphique.php');
 }
 else{
     header('Location: ../View/graphique.php');
