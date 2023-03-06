@@ -426,3 +426,93 @@ function insertAdmin() {
             }
         });
 }
+
+function loginMe(){
+    let login = $('#login').val();
+    let password = $('#password').val();
+    $.ajax({
+        method: 'post',
+        url: '../Controller/executeLogin.php',
+        data: {
+            login: login,
+            password: password,
+        },
+        success: function (response) {
+            if (response === 'ok') {
+                location.href = '../View/index.php';
+            }else {
+                document.getElementById('messageIncorrect').style.display = 'block';
+            }
+        }
+    });
+}
+
+function profil(){
+    $.ajax({
+        method: 'post',
+        url: '../Controller/executeProfil.php',
+        success: function (response) {
+            let json = JSON.parse(response);
+            let success = json.success;
+            let msg = json.msg;
+            let currentUser = json.currentUser;
+            let prenom = currentUser.prenom.charAt(0).toUpperCase() + currentUser.prenom.slice(1);
+            let nom = currentUser.nom.toUpperCase();
+            $('#bioLogin').append('<span>Login: </span> ' + currentUser.login_utilisateur);
+            $('#bioPrenomNom').append('<span>Prenom: </span> ' + prenom + '  <span>Nom: </span>' + nom);
+            $('#bioEmail').append('<span>Email: </span> ' + currentUser.email);
+            $('#bioDate').append('<span>Date de naissance: </span> ' + currentUser.date_naissance);
+            $('#profilEmail').append(currentUser.email);
+            $('#nomPrenom').append(prenom + ' ' + nom);
+            $('#pdp').append('<img src="'+currentUser.photo+'" alt="photodeprofil" />');
+            $('#login').val(currentUser.login_utilisateur);
+            $('#password').val(currentUser.password);
+            $('#email').val(currentUser.email);
+            $('#nom').val(currentUser.nom);
+            $('#prenom').val(currentUser.prenom);
+            $('#date_naissance').val(currentUser.date_naissance);
+            if (success === 'ok') {
+                let penality = json.penality;
+                $('#profilJurons').append(
+                    '<tr>' +
+                    '<td>' + penality.petit + '</td>' +
+                    '<td>' + penality.gros + '</td>' +
+                    '<td>' + penality.rot + '</td>' +
+                    '<td>' + penality.geste + '</td>' +
+                    '<td>' + penality.retard + '</td>' +
+                    '<td>' + penality.total + '</td>' +
+                    '</tr>'
+                )
+            }else{
+                document.getElementsByClassName('profilTabJuron').style.display = 'none';
+                document.getElementById('profilJ').style.display = 'block';
+            }if (msg === 'ok') {
+                let balance = json.balance;
+                let infraction;
+                for (let i = 0; i < balance.length; i++) {
+                    if (balance[i].code_infraction === 'code_1') {
+                        infraction = 'retard';
+                    }if (balance[i].code_infraction === 'code_2') {
+                        infraction = 'petite insulte';
+                    }if (balance[i].code_infraction === 'code_3') {
+                        infraction = 'grosse insulte';
+                    }if (balance[i].code_infraction === 'code_4') {
+                        infraction = 'rot';
+                    }if (balance[i].code_infraction === 'code_5') {
+                        infraction = 'geste';
+                    }
+                    $('#profilBalance').append(
+                        '<tr>' +
+                        '<td>' + infraction + '</td>' +
+                        '<td>' + balance[i].login_utilisateur + '</td>' +
+                        '<td>' + balance[i].date_infraction + '</td>' +
+                        '</tr>'
+                    )
+                }
+            }else{
+                document.getElementById('profilB').style.display = 'block';
+                document.getElementById('profilTabBalance').style.display = 'none';
+            }
+        }
+    });
+}

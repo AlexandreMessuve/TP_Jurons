@@ -56,14 +56,13 @@ class  DButilisateurManager
         return  $stmt->execute();
     }
 
-    static function deleteUtilisateur(Utilisateur $utilisateur): bool
+    static function deleteUtilisateur(string $login,string $email): bool
     {
-
-        $login = $utilisateur->getLogin();
         $pdo = self::PDO();
-        $sql = "DELETE FROM `utilisateur` WHERE login_utilisateur =?";
+        $sql = "DELETE FROM `utilisateur` WHERE login_utilisateur =? AND email =?";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(1, $login);
+        $stmt->bindParam(2, $email);
         return  $stmt->execute();
     }
    

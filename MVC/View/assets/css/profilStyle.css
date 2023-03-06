@@ -446,16 +446,16 @@ ul.summary-list > li:last-child  {
 
    
    .containeurHistorique{
-    width: 100%;
-    height: 500px;
-    display: flex;
-    justify-content: start;
-    margin-left: 11%;
+        height: 500px;
+        display: flex;
+        justify-content: start;
+        margin-left: 5%;
    }
 
 .cardDeux {
+    overflow-y: auto;
     width: 500px;
-    height: 254px;
+    max-height: 350px;
     margin: 0;
     margin-top: 2%;
     background-color: #ffffff;

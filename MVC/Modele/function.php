@@ -133,3 +133,54 @@ function envoieMailPenality(string $email, string $nom, string $prenom, string $
     return mail($to, $subject, $message, $headers);
 
 }
+
+//function pour avoir la donner de l'objet
+function objetToInt($objet) : int {
+    if (!is_object($objet)) {
+        $rep = 0;
+    }else {
+        $rep = $objet->countInfra;
+    }
+    return $rep;
+}
+
+function pdp(string $upload_path, string $filename, string $filepath):bool{
+    $allowed_filetypes = array('.jpg','.gif','.bmp','.png'); // type d'extension autorisée
+    $max_filesize = 9999999999; // max filesize
+//on test si le filepath existe pas
+    if (!is_dir($upload_path)){
+        //si il existe pas alors on creer la direction
+        mkdir($upload_path, 0777, true);
+    }
+
+//on recupere l'extension du fichier
+    $ext = substr($filename, strpos($filename,'.'), strlen($filename)-1);
+
+// on test si l'extension du fichier est valide
+    if(!in_array($ext,$allowed_filetypes)){
+        return false;
+    }
+
+// on test si il dépasse pas le poids max
+    if(filesize($filepath) > $max_filesize){
+        return false;
+    }
+
+
+// on test si on peut deplacer le fichier dans le dossier
+    if(!is_writable($upload_path)){
+        return false;
+    }
+
+
+
+// on test de deplacer le fichier dans le dossier
+    if(move_uploaded_file($filepath,$upload_path . $filename)){
+        return true;
+    }
+
+    else{
+        return false;
+    }
+
+}
