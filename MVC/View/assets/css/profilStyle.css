@@ -418,7 +418,7 @@ ul.summary-list > li:last-child  {
 
 .card {
     width: 800px;
-    height: 254px;
+    height: 298px;
     margin: 0 auto;
     background-color: #ffffff;
     border-radius: 8px;
@@ -446,22 +446,44 @@ ul.summary-list > li:last-child  {
 
    
    .containeurHistorique{
+    width: 100%;
         height: 500px;
         display: flex;
-        justify-content: start;
-        margin-left: 5%;
+        justify-content: space-evenly;
+        margin-left: -7%;
    }
 
 .cardDeux {
     overflow-y: auto;
-    width: 500px;
-    max-height: 350px;
+    width: 375px;
+    max-height: 120px;
     margin: 0;
     margin-top: 2%;
     background-color: #ffffff;
     border-radius: 8px;
     z-index: 1;
+    margin-left: 8%;
    }
+.cardTrois{
+    margin-right: -auto;
+    overflow-y: auto;
+    width: 800px;
+    max-height: 350px;
+    margin: 0;
+    margin-top: 2%;
+    background-color: #ffffff;
+    border-radius: 8px;
+}
+
+
+
+
+
+
+
+
+
+
    
    .tools {
     display: flex;
