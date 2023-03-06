@@ -2,18 +2,48 @@
 .parent {
     display: flex;
         justify-content: space-around;
-width: 250px;
+width: 100%;
 height: 300PX;
-background-color: rgb(152, 152, 152);
+
 
     }
-    
+
+
     .containeurUn{
         display: flex;
         flex-direction: column-reverse;
         justify-content: center;
         margin-top: 3%;
-        width: 50%;
-        margin-left: 25%;
+        width: 70%;
+        margin-left: 0%;
+    }
+
+    @media only screen and (max-width: 1000px){
+
+        body{
+            width: 100%;
+        }
+ 
+        .parent {
+            display: flex;
+                justify-content: center;
+        width: 100%;
+        height: 300PX;
+        
+        
+            }
+            .containeurUn{
+                display: flex;
+                flex-direction: column-reverse;
+                justify-content: center;
+                margin-top: 3%;
+                width: 70%;
+                margin-left: 0%;
+            }
+            .parent{
+                display: flex;
+                justify-content: center;
+
+            }
     }
 
